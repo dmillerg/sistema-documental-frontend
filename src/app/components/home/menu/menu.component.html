@@ -1,0 +1,31 @@
+<mat-accordion *ngFor="let item of menu" multi>
+    <mat-expansion-panel class="mat-elevation-z0 borde-left-warn" hideToggle (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title class="menu-item" routerLinkActive="mat-icon-active">
+                <mat-icon class="font-title-menu" mat-list-icon>{{item.icon}}</mat-icon>
+                <span class="font-title-menu" style="margin-left: 10px;">{{item.name}}</span>
+            </mat-panel-title>
+            <mat-panel-description>
+                <mat-icon class="font-title-menu">keyboard_arrow_down</mat-icon>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list style="margin-top: -15px;margin-bottom: -30px;" class="borde-left-warn">
+            <div>
+                <ng-container *ngFor="let hijo of item.children">
+                    <ng-container>
+                        <mat-list-item routerLinkActive="mat-icon-active" style="margin-left: -20px;font-size: 14px;margin-top: -15px;">
+                            <mat-subheader class="menu-item" mat-list-item (click)="navigateTo(hijo.path)" mat-line>
+                                <mat-icon mat-list-icon style="margin-left: 10px;font-size: 15px;">{{hijo.icon}}</mat-icon>
+                                <span style="margin-left: 3px;">{{hijo.name}}</span>
+                            </mat-subheader>
+                        </mat-list-item>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </mat-nav-list>
+
+        <!-- <div *ngFor="let hijo of item.children" class="menu-subitem">
+      <mat-subheader (click)="navigateTo(hijo.path)"><mat-icon>{{hijo.icon}}</mat-icon>{{hijo.name}}</mat-subheader>
+    </div> -->
+    </mat-expansion-panel>
+</mat-accordion>

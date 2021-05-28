@@ -1,0 +1,36 @@
+<div class="modal-content bg-darkest" style="border: 0px;">
+    <div class="modal-header bg-warn">
+        <h2 class="modal-title">{{modal_action}} {{modalHeader}}</h2>
+        <button type="button" style="color: white;" class="close" data-dismiss="modal" aria-label="Close" (click)="actiModal.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <p>{{modalmessage}}</p>
+
+        <form>
+
+            <div class="contenedor">
+                <mat-form-field appearance="outline" color="warn">
+                    <mat-label>Nombre del rol</mat-label>
+                    <input matInput #rol maxlength="20" placeholder="Nombre del rol" [(ngModel)]="rol_name" (ngModelChange)="validarCambio()" name="rol" required>
+                    <mat-icon matSuffix>account_box</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{rol.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn">
+                    <mat-label>Descripcion</mat-label>
+                    <input matInput #description maxlength="100" placeholder="Descripcion" [(ngModel)]="description_model" (ngModelChange)="validarCambio()" name="description" required>
+                    <mat-icon matSuffix>description</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{description.value.length}} / 100</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button [disabled]="disable_register" mat-raised-button color="warn" flex data-dismiss="modal" (click)="ActionRol()">{{modal_action}} rol</button>
+    </div>
+
+</div>

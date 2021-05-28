@@ -1,0 +1,95 @@
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    max-width: 600px;
+}
+
+.bg-darkest {
+    background-color: rgba(37, 37, 37);
+    color: whitesmoke;
+}
+
+.modal-content {
+    -webkit-border-color: rgba(27, 27, 27) !important;
+    -moz-border-color: rgba(27, 27, 27) !important;
+    border-color: rgba(27, 27, 27) !important;
+    background-color: rgba(37, 37, 37);
+    background: rgba(37, 37, 37);
+    border-color: rgba(27, 27, 27);
+    border: rgba(27, 27, 27);
+}
+
+.bg-warn {
+    background-color: #f44336;
+    color: white;
+}
+
+
+/* // mat-icon-stepper selected color change  */
+
+::ng-deep .mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit {
+    background-color: white!important;
+}
+
+
+/* //input outline color */
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: white;
+    /* // opacity: 1!important; */
+}
+
+
+/* //mat-input focused color */
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: green;
+}
+
+
+/* // mat-input error outline color */
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+    color: white!important;
+    opacity: 0.8!important;
+}
+
+
+/* // mat-input carent color */
+
+::ng-deep .mat-input-element {
+    caret-color: white!important;
+}
+
+
+/* // mat-input error carent color */
+
+::ng-deep .mat-form-field-invalid .mat-input-element,
+.mat-warn .mat-input-element {
+    caret-color: white;
+}
+
+
+/* // mat-label normal state style */
+
+::ng-deep .mat-form-field-label {
+    color: white;
+    /* // color: $mainColor!important; */
+}
+
+
+/* // mat-label focused style */
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: white;
+}
+
+
+/* // mat-label error style */
+
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+    color: white;
+}

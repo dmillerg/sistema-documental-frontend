@@ -1,0 +1,19 @@
+.mat-card {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: rgba(37, 37, 37);
+    color: whitesmoke;
+}
+
+mat-divider {
+    background-color: rgb(100, 100, 100);
+}
+
+.deep-orange {
+    color: #f44336;
+}
+
+.icon-in-menu {
+    position: relative;
+    margin-right: 5px;
+    text-align: right;
+}

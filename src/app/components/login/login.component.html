@@ -1,0 +1,48 @@
+  <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card class="shipping-card">
+      <mat-card-header>
+        <mat-card-title>Sistema de control de documentos</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput type="text" placeholder="usuario" formControlName="user">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput type="password" placeholder="contraseña" formControlName="password">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-radio-group formControlName="remember">
+              <mat-radio-button value="recordar">Recordar</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+        <button mat-raised-button color="primary" type="button" (click)="mostrarModal()">Mostrar</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+
+  <!-- <ng-template #ModalDocument let-modal>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Exito</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        !Modal mostrado correctamente
+      </div>
+    </div>
+  </ng-template> -->
