@@ -1,7 +1,8 @@
 <mat-sidenav-container class="sidenav-content">
     <mat-sidenav #drawer class="sidenav  bg-darkest" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" mode="side" [opened]="(isHandset$ | async) === false">
         <mat-toolbar class="deep-orange">
-            <mat-icon>home</mat-icon><span>Menu</span>
+            <img mat-card-avatar class="example-header-image" src="../../../../shiba1.jpg" matTooltip="usuarios">
+            <span style="font-size: 15px;">kuroko</span>
         </mat-toolbar>
         <mat-nav-list>
             <app-menu></app-menu>

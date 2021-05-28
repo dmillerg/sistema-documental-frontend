@@ -117,11 +117,10 @@ export class ModalPermisosComponent implements OnInit {
   }
 
   allComplete() {
-    this.permisos.is_all = this.permisos.is_all;
-    this.permisos.is_edit = !this.permisos.is_edit;
-    this.permisos.is_create = !this.permisos.is_create;
-    this.permisos.is_delete = !this.permisos.is_delete;
-    this.permisos.is_read = !this.permisos.is_read;
+    this.permisos.is_edit = this.permisos.is_all;
+    this.permisos.is_create = this.permisos.is_all;
+    this.permisos.is_delete = this.permisos.is_all;
+    this.permisos.is_read = this.permisos.is_all;
   }
 }
 

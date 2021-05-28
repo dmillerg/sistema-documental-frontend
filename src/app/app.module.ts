@@ -1,3 +1,4 @@
+import { ModalLoginComponent } from './components/modals/modal-login/modal-login.component';
 import { ModalPermisosComponent } from './components/modals/modal-permisos/modal-permisos.component';
 import { ModalRolComponent } from './components/modals/modal-rol/modal-rol.component';
 import { NgModule } from '@angular/core';
@@ -42,6 +43,7 @@ import { ModalDeleteComponent } from './components/modals/modal-delete/modal-del
     ModalRolComponent,
     ModalPermisosComponent,
     ModalDeleteComponent,
+    ModalLoginComponent
   ],
   imports: [
     BrowserModule,

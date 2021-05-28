@@ -196,4 +196,16 @@ export class ApiService {
     return this.http.get<Roles[]>(direccion, { 'headers': headers});
   }
 
+  /**
+   * Loguea al usuario en la pagina si es q este existe
+   * @param user
+   * @param pass
+   * @returns
+   */
+  LoginUser(user: string, pass: string){
+    let direccion = this.url + '/login';
+    let body = {"user": user, "pass": pass};
+    return this.http.post(direccion,body);
+  }
+
 }

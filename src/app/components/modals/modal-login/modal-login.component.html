@@ -1,0 +1,35 @@
+<div class="modal-content bg-darkest" style="border: 0px;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-header bg-warn">
+        <h2 class="modal-title">Bienvenido al sistema documental de la CTC</h2>
+
+    </div>
+    <div class="modal-body">
+        <p>debe autenticarse antes de poder acceder</p>
+
+        <form>
+
+            <div class="contenedor">
+                <mat-hint *ngIf="message_error" style="color: brown;">usuario o contraseña incorrecta</mat-hint>
+                <mat-form-field appearance="outline" color="warn">
+                    <input matInput type="text" placeholder="usuario" name="user" [(ngModel)]="user" (ngModelChange)="validar()">
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" color="warn">
+                    <input matInput type="password" placeholder="contraseña" name="password" [(ngModel)]="password">
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                </mat-form-field>
+
+                <mat-radio-group>
+                    <mat-radio-button value="recordar">Recordar</mat-radio-button>
+                </mat-radio-group>
+
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button [disabled]="disable_register" mat-raised-button color="warn" flex data-dismiss="modal" (click)="onSubmit()">Autenticar</button>
+    </div>
+
+</div>

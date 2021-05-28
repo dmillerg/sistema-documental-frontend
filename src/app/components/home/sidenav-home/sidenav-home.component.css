@@ -44,6 +44,11 @@ mat-sidenav-container-container {
     flex: 1 1 auto;
 }
 
+.example-header-image {
+    margin-right: 10px;
+    background-size: cover;
+}
+
 
 /* mat-sidenav{
   margin-top: 64px;
