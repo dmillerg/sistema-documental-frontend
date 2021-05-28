@@ -20,7 +20,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
@@ -28,11 +28,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { LoginComponent } from './components/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ModalDocumentsComponent } from './components/modals/modal-documents/modal-documents.component';
 import { ModalUsuarioComponent } from './components/modals/modal-usuario/modal-usuario.component';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { ModalDeleteComponent } from './components/modals/modal-delete/modal-delete.component';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 @NgModule({
   declarations: [
@@ -70,11 +71,12 @@ import { ModalDeleteComponent } from './components/modals/modal-delete/modal-del
     NgbModule,
     MatCheckboxModule,
     HttpClientModule,
-    MatStepperModule
+    MatStepperModule,
+    NgxWebstorageModule.forRoot(),
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy }
-    ],
+  ],
 
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,4 @@
+import { LocalStorageService } from 'ngx-webstorage';
 import { Router } from '@angular/router';
 import { ApiService } from './../../../service/api.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +19,7 @@ export class ModalLoginComponent implements OnInit {
 
   disable_register: boolean = true;
 
-  constructor(private activeModal: NgbActiveModal, private api: ApiService, private router: Router) {
+  constructor(private activeModal: NgbActiveModal, private api: ApiService, private router: Router,private storage:LocalStorageService) {
     this.actiModal = this.activeModal;
   }
 
@@ -36,6 +37,7 @@ export class ModalLoginComponent implements OnInit {
   onSubmit() {
     this.api.LoginUser(this.user, this.password).subscribe((results) => {
       this.activeModal.close('authenticated');
+      this.storage.store('usuario', results.usuario[0]);
       this.router.navigate(['home/']);
     }, (error) => {
       this.message_error = true;
