@@ -107,7 +107,7 @@ export class ModalUsuarioComponent implements OnInit {
       formData.append("full_name",this.form_user.value.full_name);
       formData.append("register_date",this.form_user.value.register_date);
       formData.append("register_hour",this.form_user.value.register_hour);
-      formData.append("roles",this.form_user.value.rol_usuario);
+      formData.append("roles",JSON.stringify(this.form_user.value.rol_usuario));
       this.api.AddUsuario(formData).subscribe((result) => {
         // Emitir contenido desde el modal al padre al cerrarlo
         this.activeModal.close(this.form_user.value);
