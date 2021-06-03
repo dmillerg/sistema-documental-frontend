@@ -65,7 +65,7 @@ export class TableUserComponent implements AfterViewInit {
   }
 
   loadData() {
-    var usuario_filtro: Usuarios = { 'id': 1, 'user': this.filtro_usuario, 'password': this.filter, 'full_name': this.filtro_nombre, 'register_date': '', 'register_hour': this.filtro_hora }
+    var usuario_filtro: Usuarios = { 'id': 1, 'user': this.filtro_usuario, 'password': this.filter, 'full_name': this.filtro_nombre, 'register_date': '', 'register_hour': this.filtro_hora, 'avatar': null }
     this.api.ObtenerUsuarios(usuario_filtro).subscribe((result) => {
       this.isLoadingResults = false;
       this.array_user = result;
@@ -96,11 +96,17 @@ export class TableUserComponent implements AfterViewInit {
     modal.componentInstance.modalHeader = "Usuario";
     modal.componentInstance.modalmessage = "Debe al menos modificar uno de los campos";
     modal.componentInstance.modal_action = "Editar";
-    modal.componentInstance.usuario.id = row.id;
-    modal.componentInstance.usuario.user = row.user;
-    modal.componentInstance.usuario.full_name = row.full_name;
-    modal.componentInstance.usuario.password = row.password;
-    modal.componentInstance.usuario.register_date = row.register_date;
+    modal.componentInstance.form_user.setValue({
+      id: row.id,
+      user: row.user,
+      password: row.password,
+      full_name: row.full_name,
+      register_date: row.register_date,
+      register_hour: row.register_hour,
+      avatar: row.avatar,
+      rol_usuario: '',
+      confirm: row.password
+    });
 
     // Emitir desde el modal contenido de este al cerrarlo
     modal.result.then((result) => {

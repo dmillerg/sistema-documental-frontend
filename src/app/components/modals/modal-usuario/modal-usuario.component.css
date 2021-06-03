@@ -5,6 +5,11 @@
     max-width: 600px;
 }
 
+.full-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .bg-darkest {
     background-color: rgba(37, 37, 37);
     color: whitesmoke;

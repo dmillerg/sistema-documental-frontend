@@ -8,51 +8,58 @@
     <div class="modal-body">
         <p>{{modalmessage}}</p>
 
-        <form>
+        <form [formGroup]="form_user">
+            <div class="full-container">
 
-            <div class="contenedor">
-                <mat-form-field appearance="outline" color="warn">
-                    <mat-label>Usuario</mat-label>
-                    <input matInput #user maxlength="20" placeholder="Usuario" [(ngModel)]="usuario.user" (ngModelChange)="validarCambio()" name="user" required>
-                    <mat-icon matSuffix>person</mat-icon>
-                    <mat-hint style="color: white;" align="end">{{user.value.length}} / 20</mat-hint>
-                    <!-- <mat-hint>Hint</mat-hint> -->
-                </mat-form-field>
-                <mat-form-field appearance="outline" color="warn">
-                    <mat-label>Contraseña</mat-label>
-                    <input matInput #password maxlength="20" placeholder="Password" [type]="hide1 ? 'password' : 'text'" [(ngModel)]="usuario.password" (ngModelChange)="validarCambio()" name="password" required>
-                    <mat-icon matSuffix type="button" (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    <mat-hint style="color: white;" align="end">{{password.value.length}} / 20</mat-hint>
-                    <!-- <mat-hint>Hint</mat-hint> -->
-                </mat-form-field>
-                <mat-form-field appearance="outline" color="warn">
-                    <mat-label>confirmacion</mat-label>
-                    <input matInput #confirma maxlength="20" placeholder="Password" [type]="hide ? 'password' : 'text'" [(ngModel)]="confirm" (ngModelChange)="validarCambio()" name="confirm" required>
-                    <mat-icon matSuffix type="button" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    <mat-hint style="color: white;" align="end">{{confirma.value.length}} / 20</mat-hint>
-                    <mat-hint style="color: #ff5722;" *ngIf="valid">las contraseñas no coinciden</mat-hint>
-                </mat-form-field>
-                <mat-form-field appearance="outline" color="warn">
-                    <mat-label>Nombre completo</mat-label>
-                    <input matInput #full_name maxlength="50" placeholder="Nombre completo" [(ngModel)]="usuario.full_name" name="full_name" (ngModelChange)="validarCambio()" required>
-                    <mat-icon matSuffix>text_fields</mat-icon>
-                    <mat-hint style="color: white;" align="end">{{full_name.value.length}} / 50</mat-hint>
-                    <!-- <mat-hint>Hint</mat-hint> -->
-                </mat-form-field>
-                <mat-form-field appearance="outline" color="warn">
-                    <mat-label style="color: white;">Asignar rol(es) al usuario</mat-label>
-                    <mat-select [(ngModel)]="rol_usuario" name="roles" (selectionChange)="validarCambio()" multiple>
-                        <mat-select-trigger style="color: white;font-size: 11px;">
-                            {{rol_usuario ? rol_usuario[0].rol_name : ''}}
-                            <span *ngIf="rol_usuario?.length > 1" class="example-additional-selection">
-              (+{{rol_usuario.length - 1}} {{rol_usuario?.length === 2 ? 'other' : 'others'}})
+                <button mat-raised-button style="width: 150px;height: 150px;background-color: brown;margin-top: 20px;color: white;">
+                <mat-icon>people</mat-icon>
+                <input type="file" formControlName="avatar" name="data-upload" (change)="fileEvent($event)">
+</button>
+
+                <!-- <img id="h" src=".."> -->
+                <div class="contenedor">
+                    <mat-form-field appearance="outline" color="warn">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput #user maxlength="20" placeholder="Usuario" formControlName="user" (ngModelChange)="validarCambio()" name="user" required>
+                        <mat-icon matSuffix>person</mat-icon>
+                        <mat-hint style="color: white;" align="end">{{user.value.length}} / 20</mat-hint>
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" color="warn">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput #password maxlength="20" placeholder="Password" [type]="hide1 ? 'password' : 'text'" formControlName="password" (ngModelChange)="validarCambio()" name="password" required>
+                        <mat-icon matSuffix type="button" (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <mat-hint style="color: white;" align="end">{{password.value.length}} / 20</mat-hint>
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" color="warn">
+                        <mat-label>confirmacion</mat-label>
+                        <input matInput #confirma maxlength="20" placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="confirm" (ngModelChange)="validarCambio()" name="confirm" required>
+                        <mat-icon matSuffix type="button" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <mat-hint style="color: white;" align="end">{{confirma.value.length}} / 20</mat-hint>
+                        <mat-hint style="color: #ff5722;" *ngIf="valid">las contraseñas no coinciden</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" color="warn">
+                        <mat-label>Nombre completo</mat-label>
+                        <input matInput #full_name maxlength="50" placeholder="Nombre completo" formControlName="full_name" name="full_name" (ngModelChange)="validarCambio()" required>
+                        <mat-icon matSuffix>text_fields</mat-icon>
+                        <mat-hint style="color: white;" align="end">{{full_name.value.length}} / 50</mat-hint>
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" color="warn">
+                        <mat-label style="color: white;">Asignar rol(es) al usuario</mat-label>
+                        <mat-select formControlName="rol_usuario" name="roles" (selectionChange)="validarCambio()" multiple>
+                            <mat-select-trigger style="color: white;font-size: 11px;">
+                                {{form_user.value.rol_usuario ? form_user.value.rol_usuario[0].rol_name : ''}}
+                                <span *ngIf="form_user.value.rol_usuario?.length > 1" class="example-additional-selection">
+              (+{{form_user.value.rol_usuario.length - 1}} {{form_user.value.rol_usuario?.length === 2 ? 'other' : 'others'}})
             </span>
-                        </mat-select-trigger>
-                        <mat-option *ngFor="let rol of roles" [value]="rol">{{rol.rol_name}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
+                            </mat-select-trigger>
+                            <mat-option *ngFor="let rol of roles" [value]="rol">{{rol.rol_name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
             </div>
-
         </form>
     </div>
     <div class="modal-footer">

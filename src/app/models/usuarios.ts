@@ -5,4 +5,5 @@ export interface Usuarios {
   full_name: string;
   register_date: string;
   register_hour: string;
+  avatar: File;
 }

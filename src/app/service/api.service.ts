@@ -36,18 +36,10 @@ export class ApiService {
    * @param user
    * @returns void
    */
-  AddUsuario(user: Usuarios, roles: Roles[]) {
+  AddUsuario(formData) {
     const headers = { 'content-type': 'application/json' };
-    const body = {
-      "user": user.user,
-      "password": user.password,
-      "full_name": user.full_name,
-      "register_date": user.register_date,
-      "register_hour": user.register_hour,
-      "roles": roles
-    };
     let direccion = this.url + 'saveUsuario';
-    return this.http.post(direccion, body, { 'headers': headers });
+    return this.http.post(direccion, formData);
   }
 
   /**
@@ -209,4 +201,11 @@ export class ApiService {
     return this.http.post<Login>(direccion,body);
   }
 
+
+  uploadFile(File): Observable<any>{
+    let direccion = "http://localhost:3000/uploads";
+
+
+    return this.http.post(direccion,File);
+  }
 }

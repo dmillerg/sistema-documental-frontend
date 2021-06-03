@@ -34,6 +34,7 @@ import { ModalUsuarioComponent } from './components/modals/modal-usuario/modal-u
 import { MatStepperModule } from '@angular/material/stepper';
 import { ModalDeleteComponent } from './components/modals/modal-delete/modal-delete.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 @NgModule({
   declarations: [
@@ -73,9 +74,10 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
     HttpClientModule,
     MatStepperModule,
     NgxWebstorageModule.forRoot(),
+    MaterialFileInputModule
   ],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy},
   ],
 
   bootstrap: [AppComponent]

@@ -4,12 +4,7 @@ import { Usuarios } from './../../../models/usuarios';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { formatDate } from '@angular/common';
-import { FormControl } from '@angular/forms';
-interface Food {
-  value: string;
-  viewValue: string;
-}
-
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-usuario',
@@ -17,6 +12,8 @@ interface Food {
   styleUrls: ['./modal-usuario.component.css']
 })
 export class ModalUsuarioComponent implements OnInit {
+
+  uploadFiles: Array<File>;
 
   modal_action: string = "Agregar";
   modalHeader: string = '';
@@ -29,30 +26,38 @@ export class ModalUsuarioComponent implements OnInit {
   // Emitir contenido desde el modal al padre sin cerrarlo
   @Output() user: EventEmitter<any> = new EventEmitter();
 
-  usuario: Usuarios = {
-    id: null,
-    user: '',
-    password: '',
-    full_name: '',
-    register_date: '',
-    register_hour: ''
-  }
-  confirm: string = '';
 
-  usuario_past: Usuarios = {
-    id: null,
-    user: '',
-    password: '',
-    full_name: '',
-    register_date: '',
-    register_hour: ''
-  };
+  form_user = new FormGroup({
+    id: new FormControl(''),
+    user: new FormControl(''),
+    password: new FormControl(''),
+    full_name: new FormControl(''),
+    register_date: new FormControl(''),
+    register_hour: new FormControl(''),
+    avatar: new FormControl(''),
+    rol_usuario: new FormControl(''),
+    confirm: new FormControl('')
+  });
+
+
+
+  form_user_past = new FormGroup({
+    id: new FormControl(''),
+    user: new FormControl(''),
+    password: new FormControl(''),
+    full_name: new FormControl(''),
+    register_date: new FormControl(''),
+    register_hour: new FormControl(''),
+    avatar: new FormControl(''),
+    rol_usuario: new FormControl('')
+  });
+
 
   valid: boolean = false;
   disable_register = true;
 
   roles;
-  rol_usuario: Roles[];
+
   rol_usuario_old: Roles[];
   // toppingList: string[] = ['usuario', 'nombre', 'fecha de registro', 'hora de registro'];
 
@@ -62,17 +67,16 @@ export class ModalUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.modal_action == "Editar") {
-      this.confirm = this.usuario.password;
-      this.usuario_past.user = this.usuario.user;
-      this.usuario_past.password = this.usuario.password;
-      this.usuario_past.full_name = this.usuario.full_name;
-      this.api.ObtenerRolesByUser(this.usuario.id).subscribe((result) => {
-        this.rol_usuario = result;
-        for(let r of result){
+      this.form_user.value.confirm = this.form_user.value.password;
+      this.form_user_past.value.user = this.form_user.value.user;
+      this.form_user_past.value.password = this.form_user.value.password;
+      this.form_user_past.value.full_name = this.form_user.value.full_name;
+      // this.api.ObtenerRolesByUser(this.form_user.value).subscribe((result) => {
+      //   this.form_user.value.rol_usuario.setValue(result);
 
-        }
-      });
+      // });
     }
+
     this.api.ObtenerRoles().subscribe((result) => {
       this.roles = result;
     });
@@ -91,16 +95,27 @@ export class ModalUsuarioComponent implements OnInit {
 
     if (this.modal_action == "Agregar") {
       var date = new Date();
-      this.usuario.register_date = formatDate(date, 'dd - MM - yyyy', 'en-US');
-      this.usuario.register_hour = formatDate(date, 'HH:mm aa', 'en-Us');
-      this.api.AddUsuario(this.usuario, this.rol_usuario).subscribe((result) => {
+      this.form_user.value.register_date = formatDate(date, 'dd - MM - yyyy', 'en-US');
+      this.form_user.value.register_hour = formatDate(date, 'HH:mm aa', 'en-Us');
+      let formData = new FormData();
+      for (let i = 0; i < this.uploadFiles.length; i++) {
+        formData.append("avatar", this.uploadFiles[i], this.uploadFiles[i].name);
+      }
+      formData.append("id",this.form_user.value.id);
+      formData.append("user",this.form_user.value.user);
+      formData.append("password",this.form_user.value.password);
+      formData.append("full_name",this.form_user.value.full_name);
+      formData.append("register_date",this.form_user.value.register_date);
+      formData.append("register_hour",this.form_user.value.register_hour);
+      formData.append("roles",this.form_user.value.rol_usuario);
+      this.api.AddUsuario(formData).subscribe((result) => {
         // Emitir contenido desde el modal al padre al cerrarlo
-        this.activeModal.close(this.usuario);
+        this.activeModal.close(this.form_user.value);
       });
     } else {
-      this.api.UpdateUsuario(this.usuario, this.rol_usuario).subscribe((result) => {
+      this.api.UpdateUsuario(this.form_user.value, this.form_user.value.rol_usuario).subscribe((result) => {
         // Emitir contenido desde el modal al padre al cerrarlo
-        this.activeModal.close(this.usuario);
+        this.activeModal.close(this.form_user.value);
       });
     }
   }
@@ -126,7 +141,7 @@ export class ModalUsuarioComponent implements OnInit {
    * @returns
    */
   validarCambioFormulario(): boolean {
-    return (this.usuario_past.user != this.usuario.user || this.usuario_past.password != this.usuario.password || this.usuario_past.full_name != this.usuario.full_name || this.usuario_past.register_date != this.usuario.register_date || this.rol_usuario !=this.rol_usuario_old) && this.usuario.password == this.confirm;
+    return (this.form_user_past.value.user != this.form_user.value.user || this.form_user_past.value.password != this.form_user.value.password || this.form_user_past.value.full_name != this.form_user.value.full_name || this.form_user_past.value.register_date != this.form_user.value.register_date || this.form_user.value.rol_usuario != this.rol_usuario_old) && this.form_user.value.password == this.form_user.value.confirm;
   }
 
   /**
@@ -134,7 +149,7 @@ export class ModalUsuarioComponent implements OnInit {
    * @returns
    */
   validarCamposVacios(): boolean {
-    return this.usuario.user != '' && this.usuario.password != '' && this.usuario.full_name != '' && this.validarConfirmacion();
+    return this.form_user.value.user != '' && this.form_user.value.password != '' && this.form_user.value.full_name != '' && this.validarConfirmacion();
   }
 
   /**
@@ -142,12 +157,27 @@ export class ModalUsuarioComponent implements OnInit {
    * @returns
    */
   validarConfirmacion(): boolean {
-    return this.usuario.password == this.confirm;
+    return this.form_user.value.password == this.form_user.value.confirm;
   }
 
+  fileEvent(fileInput) {
+    let file = (<HTMLInputElement>fileInput.target).files[0];
+    //  console.log(fileInput);
+    this.uploadFiles = fileInput.target.files;
+  }
+
+  tt() {
+    let formData = new FormData();
+    for (let i = 0; i < this.uploadFiles.length; i++) {
+      formData.append("avatar", this.uploadFiles[i], this.uploadFiles[i].name);
+    }
+    this.api.uploadFile(formData).subscribe((res) => {
+      console.log(res);
+    })
+  }
 
   onChangeSelectFilter() {
-//     this.rol_usuario.setValue(this.r);
-// console.log(this.rol_usuario.value)
+    //     this.rol_usuario.setValue(this.r);
+    // console.log(this.rol_usuario.value)
   }
 }
