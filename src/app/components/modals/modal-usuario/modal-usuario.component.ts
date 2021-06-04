@@ -39,7 +39,8 @@ export class ModalUsuarioComponent implements OnInit {
     confirm: new FormControl('')
   });
 
-
+src_avatar;
+colorEstado='#f00';
 
   form_user_past = new FormGroup({
     id: new FormControl(''),
@@ -71,6 +72,13 @@ export class ModalUsuarioComponent implements OnInit {
       this.form_user_past.value.user = this.form_user.value.user;
       this.form_user_past.value.password = this.form_user.value.password;
       this.form_user_past.value.full_name = this.form_user.value.full_name;
+      this.api.getAvatarUser(this.form_user.value.id).subscribe((result)=>{
+        console.log('hola',result);
+        this.src_avatar = result;
+      },(error)=>{
+        console.log('hola',error);
+        this.src_avatar = error.url;
+      });
       // this.api.ObtenerRolesByUser(this.form_user.value).subscribe((result) => {
       //   this.form_user.value.rol_usuario.setValue(result);
 
@@ -164,6 +172,7 @@ export class ModalUsuarioComponent implements OnInit {
     let file = (<HTMLInputElement>fileInput.target).files[0];
     //  console.log(fileInput);
     this.uploadFiles = fileInput.target.files;
+     this.src_avatar = fileInput.target.value;
   }
 
   tt() {

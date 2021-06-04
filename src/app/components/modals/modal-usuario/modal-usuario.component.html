@@ -8,13 +8,13 @@
     <div class="modal-body">
         <p>{{modalmessage}}</p>
 
+
         <form [formGroup]="form_user">
             <div class="full-container">
 
-                <button mat-raised-button style="width: 150px;height: 150px;background-color: brown;margin-top: 20px;color: white;">
-                <mat-icon>people</mat-icon>
-                <input type="file" formControlName="avatar" name="data-upload" (change)="fileEvent($event)">
-</button>
+                <img mat-card-image [src]="src_avatar" style="width: 150px;height: 150px;margin-left: 15px;margin-top: 15px;">
+                <input type="file" (change)="fileEvent($event)">
+
                 <div class="contenedor">
                     <mat-form-field appearance="outline" color="warn">
                         <mat-label>Usuario</mat-label>

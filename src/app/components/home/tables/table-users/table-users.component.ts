@@ -68,12 +68,20 @@ export class TableUserComponent implements AfterViewInit {
     var usuario_filtro: Usuarios = { 'id': 1, 'user': this.filtro_usuario, 'password': this.filter, 'full_name': this.filtro_nombre, 'register_date': '', 'register_hour': this.filtro_hora, 'avatar': null }
     this.api.ObtenerUsuarios(usuario_filtro).subscribe((result) => {
       this.isLoadingResults = false;
-      this.array_user = result;
       this.isRateLimitReached = false;
-      this.dataSource = new MatTableDataSource(result);
-      this.resultsLength = result.length;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+
+      if (result.length > 0) {
+        this.array_user = result;
+        this.dataSource = new MatTableDataSource(result);
+        this.resultsLength = result.length;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+      else {
+        this.array_user = [];
+        this.dataSource = new MatTableDataSource([]);
+        this.resultsLength = 0;
+      }
     },
       (error) => {
         this.isLoadingResults = false;

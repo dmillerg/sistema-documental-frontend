@@ -208,4 +208,10 @@ export class ApiService {
 
     return this.http.post(direccion,File);
   }
+
+
+  getAvatarUser(id){
+    let direccion = this.url + 'avatar/' + id;
+    return this.http.get(direccion);
+  }
 }
