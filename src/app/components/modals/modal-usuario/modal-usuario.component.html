@@ -11,10 +11,13 @@
 
         <form [formGroup]="form_user">
             <div class="full-container">
+                <div class="contenedor-image">
+                    <img mat-card-image [src]="src_avatar" style="width: 150px;height: 150px;margin-left: 25px;margin-top: 15px;" class="img-thumbnail rounded">
 
-                <img mat-card-image [src]="src_avatar" style="width: 150px;height: 150px;margin-left: 15px;margin-top: 15px;">
-                <input type="file" (change)="fileEvent($event)">
-
+                    <div class="file-select" id="src-file1" style="cursor: pointer;">
+                        <input type="file" name="src-file1" aria-label="Imagen" style="cursor: pointer;" (change)="fileEvent($event)" accept="image/*">
+                    </div>
+                </div>
                 <div class="contenedor">
                     <mat-form-field appearance="outline" color="warn">
                         <mat-label>Usuario</mat-label>

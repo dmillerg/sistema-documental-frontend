@@ -39,8 +39,8 @@ export class ModalUsuarioComponent implements OnInit {
     confirm: new FormControl('')
   });
 
-src_avatar;
-colorEstado='#f00';
+  src_avatar;
+  colorEstado = '#f00';
 
   form_user_past = new FormGroup({
     id: new FormControl(''),
@@ -72,11 +72,11 @@ colorEstado='#f00';
       this.form_user_past.value.user = this.form_user.value.user;
       this.form_user_past.value.password = this.form_user.value.password;
       this.form_user_past.value.full_name = this.form_user.value.full_name;
-      this.api.getAvatarUser(this.form_user.value.id).subscribe((result)=>{
-        console.log('hola',result);
+      this.api.getAvatarUser(this.form_user.value.id).subscribe((result) => {
+        console.log('hola', result);
         this.src_avatar = result;
-      },(error)=>{
-        console.log('hola',error);
+      }, (error) => {
+        console.log('hola', error);
         this.src_avatar = error.url;
       });
       // this.api.ObtenerRolesByUser(this.form_user.value).subscribe((result) => {
@@ -109,13 +109,13 @@ colorEstado='#f00';
       for (let i = 0; i < this.uploadFiles.length; i++) {
         formData.append("avatar", this.uploadFiles[i], this.uploadFiles[i].name);
       }
-      formData.append("id",this.form_user.value.id);
-      formData.append("user",this.form_user.value.user);
-      formData.append("password",this.form_user.value.password);
-      formData.append("full_name",this.form_user.value.full_name);
-      formData.append("register_date",this.form_user.value.register_date);
-      formData.append("register_hour",this.form_user.value.register_hour);
-      formData.append("roles",JSON.stringify(this.form_user.value.rol_usuario));
+      formData.append("id", this.form_user.value.id);
+      formData.append("user", this.form_user.value.user);
+      formData.append("password", this.form_user.value.password);
+      formData.append("full_name", this.form_user.value.full_name);
+      formData.append("register_date", this.form_user.value.register_date);
+      formData.append("register_hour", this.form_user.value.register_hour);
+      formData.append("roles", JSON.stringify(this.form_user.value.rol_usuario));
       this.api.AddUsuario(formData).subscribe((result) => {
         // Emitir contenido desde el modal al padre al cerrarlo
         this.activeModal.close(this.form_user.value);
@@ -172,18 +172,13 @@ colorEstado='#f00';
     let file = (<HTMLInputElement>fileInput.target).files[0];
     //  console.log(fileInput);
     this.uploadFiles = fileInput.target.files;
-     this.src_avatar = fileInput.target.value;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.src_avatar = reader.result as string;
+    }
+    reader.readAsDataURL(file);
   }
 
-  tt() {
-    let formData = new FormData();
-    for (let i = 0; i < this.uploadFiles.length; i++) {
-      formData.append("avatar", this.uploadFiles[i], this.uploadFiles[i].name);
-    }
-    this.api.uploadFile(formData).subscribe((res) => {
-      console.log(res);
-    })
-  }
 
   onChangeSelectFilter() {
     //     this.rol_usuario.setValue(this.r);
