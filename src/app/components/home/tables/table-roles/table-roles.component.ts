@@ -61,6 +61,7 @@ export class TableRolesComponent implements AfterViewInit {
 
   loadData() {
     this.api.ObtenerRoles(this.filtro_rol_name,this.filtro_description).subscribe((result) => {
+      if(result.length>0){
       this.isLoadingResults = false;
       this.array_roles = result;
       this.isRateLimitReached = false;
@@ -68,6 +69,14 @@ export class TableRolesComponent implements AfterViewInit {
       this.resultsLength = result.length;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      }else{
+        this.array_roles = [];
+        this.dataSource = new MatTableDataSource([]);
+        this.resultsLength = 0;
+        this.isLoadingResults = false;
+        this.isRateLimitReached = true;
+        this.message_server = "No hay roles registrados";
+      }
     },
       (error) => {
         this.isLoadingResults = false;

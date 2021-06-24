@@ -22,7 +22,7 @@ export class TableRolesPermisosComponent implements AfterViewInit {
 
   toppings = new FormControl();
 
-  toppingList: string[] = ['usuario','nombre de rol'];
+  toppingList: string[] = ['usuario', 'nombre de rol'];
   dataSource: MatTableDataSource<RolesPermisos>;
 
   resultsLength = 0;
@@ -61,13 +61,21 @@ export class TableRolesPermisosComponent implements AfterViewInit {
 
   loadData() {
     this.api.ObtenerRolesPermisos(this.filtro_usuario, this.filtro_rol_name).subscribe((result) => {
-      this.isLoadingResults = false;
-      this.array_permisos = result;
-      this.isRateLimitReached = false;
-      this.dataSource = new MatTableDataSource(result);
-      this.resultsLength = result.length;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      if (result.length > 0) {
+        this.isLoadingResults = false;
+        this.array_permisos = result;
+        this.isRateLimitReached = false;
+        this.dataSource = new MatTableDataSource(result);
+        this.resultsLength = result.length;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      } else {
+        this.array_permisos = [];
+        this.dataSource = new MatTableDataSource([]);
+        this.resultsLength = 0;
+        this.isRateLimitReached = true;
+        this.message_server = "no hay usuarios con permisos registrados";
+      }
     },
       (error) => {
         this.isLoadingResults = false;

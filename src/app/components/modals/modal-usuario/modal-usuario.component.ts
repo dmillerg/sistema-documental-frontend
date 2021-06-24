@@ -73,10 +73,8 @@ export class ModalUsuarioComponent implements OnInit {
       this.form_user_past.value.password = this.form_user.value.password;
       this.form_user_past.value.full_name = this.form_user.value.full_name;
       this.api.getAvatarUser(this.form_user.value.id).subscribe((result) => {
-        console.log('hola', result);
         this.src_avatar = result;
       }, (error) => {
-        console.log('hola', error);
         this.src_avatar = error.url;
       });
       // this.api.ObtenerRolesByUser(this.form_user.value).subscribe((result) => {
@@ -106,8 +104,11 @@ export class ModalUsuarioComponent implements OnInit {
       this.form_user.value.register_date = formatDate(date, 'dd - MM - yyyy', 'en-US');
       this.form_user.value.register_hour = formatDate(date, 'HH:mm aa', 'en-Us');
       let formData = new FormData();
-      for (let i = 0; i < this.uploadFiles.length; i++) {
-        formData.append("avatar", this.uploadFiles[i], this.uploadFiles[i].name);
+      console.log("uploadFiles", this.uploadFiles);
+      if (this.uploadFiles != undefined) {
+        for (let i = 0; i < this.uploadFiles.length; i++) {
+          formData.append("avatar", this.uploadFiles[i], this.uploadFiles[i].name);
+        }
       }
       formData.append("id", this.form_user.value.id);
       formData.append("user", this.form_user.value.user);
@@ -121,7 +122,20 @@ export class ModalUsuarioComponent implements OnInit {
         this.activeModal.close(this.form_user.value);
       });
     } else {
-      this.api.UpdateUsuario(this.form_user.value, this.form_user.value.rol_usuario).subscribe((result) => {
+      let formData = new FormData();
+      if (this.uploadFiles != undefined) {
+        for (let i = 0; i < this.uploadFiles.length; i++) {
+          formData.append("avatar", this.uploadFiles[i], this.uploadFiles[i].name);
+        }
+      }
+      formData.append("id", this.form_user.value.id);
+      formData.append("user", this.form_user.value.user);
+      formData.append("password", this.form_user.value.password);
+      formData.append("full_name", this.form_user.value.full_name);
+      formData.append("register_date", this.form_user.value.register_date);
+      formData.append("register_hour", this.form_user.value.register_hour);
+      formData.append("roles", JSON.stringify(this.form_user.value.rol_usuario));
+      this.api.UpdateUsuario(formData, this.form_user.value.id).subscribe((result) => {
         // Emitir contenido desde el modal al padre al cerrarlo
         this.activeModal.close(this.form_user.value);
       });

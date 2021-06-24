@@ -1,3 +1,4 @@
+import { LocalStorageService } from 'ngx-webstorage';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,6 +14,7 @@ export class MenuComponent implements OnInit {
     {
       name: 'Administracion',
       icon: 'supervisor_account',
+      arrow: true,
       children: [
         { name: 'usuarios', icon: 'people', path: 'users' },
         { name: 'roles', icon: 'account_box', path: 'roles' },
@@ -22,6 +24,7 @@ export class MenuComponent implements OnInit {
     {
       name: 'Documentos',
       icon: 'books',
+      arrow: true,
       children: [
         { name: 'secretos', icon: 'assignment', path: 'menu' },
         { name: 'oficiales', icon: 'notes', path: 'drag' }
@@ -30,22 +33,34 @@ export class MenuComponent implements OnInit {
     {
       name: 'Configuracion',
       icon: 'settings',
+      arrow: true,
       children: [
-        { name: 'preferencias', icon: 'build' ,path: 'menu'},
-        { name: 'conexxion', icon: 'network_cell',path: 'top' }
+        { name: 'preferencias', icon: 'build', path: 'menu' },
+        { name: 'conexxion', icon: 'network_cell', path: 'top' }
       ]
+    },
+    {
+      name: 'Logout',
+      icon: 'logout',
+      path: 'logout'
     }
   ]
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private storage: LocalStorageService) { }
 
   ngOnInit(): void {
   }
 
   /**click sobre uno de los children */
-  navigateTo(path){
-    console.log('click',path);
-    this.router.navigate(['home/'+path]);
+  navigateTo(path) {
+    console.log('click', path);
+    if (path) {
+      if (path == 'logout') {
+        this.storage.clear();
+        this.router.navigate(['']);
+      } else
+        this.router.navigate(['home/' + path]);
+    }
   }
 
 }

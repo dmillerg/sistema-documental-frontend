@@ -9,6 +9,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalDeleteComponent } from 'src/app/components/modals/modal-delete/modal-delete.component';
 import { FormControl } from '@angular/forms';
+import { error } from 'protractor';
 
 /**
  * @title Table retrieving data through HTTP
@@ -81,6 +82,8 @@ export class TableUserComponent implements AfterViewInit {
         this.array_user = [];
         this.dataSource = new MatTableDataSource([]);
         this.resultsLength = 0;
+        this.isRateLimitReached = true;
+        this.message_server = "no hay usuarios registrados";
       }
     },
       (error) => {

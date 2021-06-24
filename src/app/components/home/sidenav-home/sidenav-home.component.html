@@ -1,7 +1,8 @@
 <mat-sidenav-container class="sidenav-content">
     <mat-sidenav #drawer class="sidenav  bg-darkest" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" mode="side" [opened]="(isHandset$ | async) === false">
         <mat-toolbar class="deep-orange">
-            <mat-icon class="example-header-image" matTooltip="{{nombre}}">account_circle</mat-icon>
+            <!-- <mat-icon class="example-header-image" matTooltip="{{nombre}}">account_circle</mat-icon> -->
+            <img src="{{src_avatar}}" class="rounded-circle" style="width: 50px;height: 50px; margin-right: 10px;">
             <section style="font-size: 15px;">{{user}}</section>
         </mat-toolbar>
         <mat-nav-list>

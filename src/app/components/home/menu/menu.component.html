@@ -1,12 +1,12 @@
 <mat-accordion *ngFor="let item of menu" multi>
     <mat-expansion-panel class="mat-elevation-z0 borde-left-warn" hideToggle (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header (click)="navigateTo(item.path)">
             <mat-panel-title class="menu-item" routerLinkActive="mat-icon-active">
                 <mat-icon class="font-title-menu" mat-list-icon>{{item.icon}}</mat-icon>
                 <span class="font-title-menu" style="margin-left: 10px;">{{item.name}}</span>
             </mat-panel-title>
             <mat-panel-description>
-                <mat-icon class="font-title-menu">keyboard_arrow_down</mat-icon>
+                <mat-icon *ngIf="item.arrow" class="font-title-menu">keyboard_arrow_down</mat-icon>
             </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-nav-list style="margin-top: -15px;margin-bottom: -30px;" class="borde-left-warn">

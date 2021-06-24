@@ -12,8 +12,10 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class SidenavHomeComponent implements OnInit {
 
+  id_usuario: number = -1;
   user: string ='';
   nombre: string ='';
+  src_avatar;
 
 isHandset$: Observable < boolean > = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
@@ -21,12 +23,19 @@ isHandset$: Observable < boolean > = this.breakpointObserver.observe(Breakpoints
     shareReplay()
   );
 
-constructor(private breakpointObserver: BreakpointObserver, private storage: LocalStorageService) { }
+constructor(private breakpointObserver: BreakpointObserver, private storage: LocalStorageService, private api: ApiService) { }
 
   ngOnInit(): void {
     var usuario = this.storage.retrieve('usuario');
+    this.id_usuario = usuario.id;
     this.user = usuario.user;
     this.nombre = usuario.full_name;
+
+    this.api.getAvatarUser(this.id_usuario).subscribe((result) => {
+      this.src_avatar = result;
+    }, (error) => {
+      this.src_avatar = error.url;
+    });
   }
 
 }

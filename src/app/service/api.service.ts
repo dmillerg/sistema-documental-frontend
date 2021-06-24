@@ -47,17 +47,10 @@ export class ApiService {
    * @param user
    * @returns void
    */
-  UpdateUsuario(user: Usuarios, roles: Roles[]) {
+  UpdateUsuario(formData,id) {
     const headers = { 'content-type': 'application/json' };
-    console.log(roles);
-    const body = {
-      "user": user.user,
-      "password": user.password,
-      "full_name": user.full_name,
-      "roles": roles
-    };
-    let direccion = this.url + 'usuarios/' + user.id;
-    return this.http.post(direccion, body, { 'headers': headers });
+    let direccion = this.url + 'usuarios/' + id;
+    return this.http.post(direccion, formData);
   }
 
   /**
