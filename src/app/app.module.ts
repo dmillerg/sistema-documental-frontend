@@ -32,6 +32,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ModalDocumentsComponent } from './components/modals/modal-documents/modal-documents.component';
 import { ModalUsuarioComponent } from './components/modals/modal-usuario/modal-usuario.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatBadgeModule} from '@angular/material/badge';
 import { ModalDeleteComponent } from './components/modals/modal-delete/modal-delete.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
@@ -59,6 +61,7 @@ import { ToastModule } from 'ng-uikit-pro-standard';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
+    MatChipsModule,
     MatListModule,
     DragDropModule,
     MatTreeModule,
@@ -70,6 +73,7 @@ import { ToastModule } from 'ng-uikit-pro-standard';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatBadgeModule,
     MatDatepickerModule,
     NgbModule,
     MatCheckboxModule,

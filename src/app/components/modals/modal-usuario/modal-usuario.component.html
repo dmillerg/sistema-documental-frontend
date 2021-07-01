@@ -12,10 +12,12 @@
         <form [formGroup]="form_user">
             <div class="full-container">
                 <div class="contenedor-image">
-                    <img mat-card-image [src]="src_avatar" style="width: 150px;height: 150px;margin-left: 25px;margin-top: 15px;" class="img-thumbnail rounded-circle">
-
-                    <div class="file-select" id="src-file1" style="cursor: pointer;">
-                        <input type="file" name="src-file1" aria-label="Imagen" style="cursor: pointer;" (change)="fileEvent($event)" accept="image/*">
+                    <div class="image">
+                        <img mat-card-image [src]="src_avatar" src="./../../.././../ctc.png" style="width: 150px;height: 150px;margin-left: 25px;margin-top: 15px;" class="img-thumbnail rounded " (click)="changeImage()">
+                        <button mat-mini-fab color="warn" style="vertical-align: top;" (click)="deleteImage()"><mat-icon>close</mat-icon></button>
+                    </div>
+                    <div class="file-select" id="src-file1" style="cursor: pointer;" [hidden]="true">
+                        <input id="imagefile" type="file" name="src-file1" aria-label="Imagen" style="cursor: pointer;" (change)="fileEvent($event)" accept="image/*">
                     </div>
                 </div>
                 <div class="contenedor">

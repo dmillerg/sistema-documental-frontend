@@ -39,11 +39,13 @@ export class ModalLoginComponent implements OnInit {
 
   onSubmit() {
     this.api.LoginUser(this.user, this.password).subscribe((results) => {
-      this.ok = false;
       const change = document.getElementById("accept").className = "accept";
       // this.toastr.success('Mensaje', 'usted se ha authenticado correctamente');
       this.toastrService.success('usted se ha authenticado correctamente','Mensaje' );
       this.login = results.usuario[0];
+      setTimeout(() => {
+        this.icono()
+       }, 1000);
       setTimeout(() => {
         this.loguear()
        }, 2000);
@@ -53,6 +55,10 @@ export class ModalLoginComponent implements OnInit {
       // this.toastr.error('Error', 'usuario o contraseña incorrecta \n '+ error);
       this.toastrService.error( error.error.message,'Error');
     });
+  }
+
+  icono(){
+    this.ok = false;
   }
 
   loguear() {

@@ -201,4 +201,12 @@ export class ModalUsuarioComponent implements OnInit {
     //     this.rol_usuario.setValue(this.r);
     // console.log(this.rol_usuario.value)
   }
+
+  changeImage(){
+    document.getElementById("imagefile").click();
+  }
+
+  deleteImage(){
+    this.src_avatar=undefined;
+  }
 }

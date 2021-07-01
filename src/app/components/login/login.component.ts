@@ -1,3 +1,4 @@
+import { LocalStorageService } from 'ngx-webstorage';
 import { ModalLoginComponent } from './../modals/modal-login/modal-login.component';
 import { ModalDocumentsComponent } from './../modals/modal-documents/modal-documents.component';
 import { Router } from '@angular/router';
@@ -17,7 +18,9 @@ export class LoginComponent implements AfterViewInit {
 
   constructor(private router: Router, private modalService: NgbModal) { }
   ngAfterViewInit(): void {
+
     this.mostrarModal();
+
   }
 
 
