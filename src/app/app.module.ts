@@ -35,6 +35,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { ModalDeleteComponent } from './components/modals/modal-delete/modal-delete.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { ToastrModule } from 'ngx-toastr';
+import { ToastModule } from 'ng-uikit-pro-standard';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     HttpClientModule,
     MatStepperModule,
     NgxWebstorageModule.forRoot(),
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    ToastrModule.forRoot(),
+    ToastModule.forRoot(),
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -41,7 +41,7 @@ export class MenuComponent implements OnInit {
     },
     {
       name: 'Logout',
-      icon: 'logout',
+      icon: 'exit_to_app',
       path: 'logout'
     }
   ]

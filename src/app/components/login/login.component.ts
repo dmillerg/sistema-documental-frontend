@@ -23,7 +23,12 @@ export class LoginComponent implements AfterViewInit {
 
 
   mostrarModal() {
-    var modal = this.modalService.open(ModalLoginComponent);
+    var modal = this.modalService.open(ModalLoginComponent,{
+      size: 'sm',
+      backdrop: 'static',
+      keyboard: false,
+      windowClass : "modal-size",
+    });
     modal.result.then((result) => {
       if (result) {
         console.log(result);

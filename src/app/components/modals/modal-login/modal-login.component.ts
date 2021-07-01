@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ApiService } from './../../../service/api.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-modal-login',
@@ -16,10 +18,11 @@ export class ModalLoginComponent implements OnInit {
 
   message_error: boolean = false;
 
-
   disable_register: boolean = true;
+  login;
+  ok: boolean = true;
 
-  constructor(private activeModal: NgbActiveModal, private api: ApiService, private router: Router,private storage:LocalStorageService) {
+  constructor(private activeModal: NgbActiveModal, private api: ApiService, private router: Router, private storage: LocalStorageService,private toastr: ToastrService,private toastrService: ToastService) {
     this.actiModal = this.activeModal;
   }
 
@@ -36,13 +39,26 @@ export class ModalLoginComponent implements OnInit {
 
   onSubmit() {
     this.api.LoginUser(this.user, this.password).subscribe((results) => {
-      this.activeModal.close('authenticated');
-      this.storage.store('usuario', results.usuario[0]);
-      this.router.navigate(['home/']);
+      this.ok = false;
+      const change = document.getElementById("accept").className = "accept";
+      // this.toastr.success('Mensaje', 'usted se ha authenticado correctamente');
+      this.toastrService.success('usted se ha authenticado correctamente','Mensaje' );
+      this.login = results.usuario[0];
+      setTimeout(() => {
+        this.loguear()
+       }, 2000);
     }, (error) => {
-      this.message_error = true;
+      // this.message_error = true;
       console.log('error', error);
-    })
+      // this.toastr.error('Error', 'usuario o contraseña incorrecta \n '+ error);
+      this.toastrService.error( error.error.message,'Error');
+    });
+  }
+
+  loguear() {
+    this.activeModal.close('authenticated');
+    this.storage.store('usuario', this.login);
+    this.router.navigate(['home/']);
   }
 
 }

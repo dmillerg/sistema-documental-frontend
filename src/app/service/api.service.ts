@@ -194,17 +194,23 @@ export class ApiService {
     return this.http.post<Login>(direccion,body);
   }
 
-
-  uploadFile(File): Observable<any>{
-    let direccion = "http://localhost:3000/uploads";
-
-
-    return this.http.post(direccion,File);
-  }
-
-
-  getAvatarUser(id){
+  /**
+   * devuelve el avatar del usuario a partir de un id
+   * @param id
+   * @returns
+   */
+  getAvatarUser(id: number){
     let direccion = this.url + 'avatar/' + id;
     return this.http.get(direccion);
+  }
+
+  /**
+   * elimina el avatar de un usuario a partir de un id
+   * @param id
+   * @returns
+   */
+  deleteAvatarUser(id: number){
+    let direccion = this.url + 'avatar/' + id;
+    return this.http.delete(direccion);
   }
 }

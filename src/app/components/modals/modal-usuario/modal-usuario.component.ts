@@ -135,10 +135,13 @@ export class ModalUsuarioComponent implements OnInit {
       formData.append("register_date", this.form_user.value.register_date);
       formData.append("register_hour", this.form_user.value.register_hour);
       formData.append("roles", JSON.stringify(this.form_user.value.rol_usuario));
-      this.api.UpdateUsuario(formData, this.form_user.value.id).subscribe((result) => {
-        // Emitir contenido desde el modal al padre al cerrarlo
-        this.activeModal.close(this.form_user.value);
+      this.api.deleteAvatarUser(this.form_user.value.id).subscribe((result)=>{
+        this.api.UpdateUsuario(formData, this.form_user.value.id).subscribe((result) => {
+          // Emitir contenido desde el modal al padre al cerrarlo
+          this.activeModal.close(this.form_user.value);
+        });
       });
+
     }
   }
 
