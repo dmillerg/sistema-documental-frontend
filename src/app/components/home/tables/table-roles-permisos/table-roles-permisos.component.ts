@@ -74,6 +74,7 @@ export class TableRolesPermisosComponent implements AfterViewInit {
         this.dataSource = new MatTableDataSource([]);
         this.resultsLength = 0;
         this.isRateLimitReached = true;
+        this.isLoadingResults = false;
         this.message_server = "no hay usuarios con permisos registrados";
       }
     },

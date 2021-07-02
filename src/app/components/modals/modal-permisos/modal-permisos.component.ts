@@ -1,3 +1,4 @@
+import { ToastrModule } from 'ngx-toastr';
 import { ApiService } from './../../../service/api.service';
 import { Usuarios } from './../../../models/usuarios';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
@@ -5,6 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { formatDate } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { Roles } from 'src/app/models/roles';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-modal-permisos',
@@ -45,7 +47,7 @@ export class ModalPermisosComponent implements OnInit {
   disable_register: boolean = false;
 
   // toppingList: string[] = ['usuario', 'nombre', 'fecha de registro', 'hora de registro'];
-  constructor(private activeModal: NgbActiveModal, private api: ApiService) {
+  constructor(private activeModal: NgbActiveModal, private api: ApiService, private toastrService: ToastService) {
     this.actiModal = this.activeModal;
   }
 
@@ -72,11 +74,17 @@ export class ModalPermisosComponent implements OnInit {
       this.api.AddPermisos(this.permisos,this.rol_id).subscribe((result) => {
         // Emitir contenido desde el modal al padre al cerrarlo
         this.activeModal.close(this.permisos);
+        this.toastrService.success("Permisos asignados correctamente al rol "+this.rol_name,"Mensaje");
+      },(error)=>{
+        this.toastrService.error("Ocurrio un error al asignar los permisos " + error.error.message ,"Error");
       });
     } else {
       this.api.UpdatePermisos(this.permisos,this.rol_id).subscribe((result) => {
         // Emitir contenido desde el modal al padre al cerrarlo
         this.activeModal.close(this.permisos);
+        this.toastrService.success("Permisos actualizados correctamente al rol "+this.rol_name,"Mensaje");
+      },(error)=>{
+        this.toastrService.error("Ocurrio un error al actualizar los permisos " + error.error.message ,"Error");
       });
     }
   }

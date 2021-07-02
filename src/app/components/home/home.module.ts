@@ -1,3 +1,4 @@
+import { AddEditDocumentComponent } from './addEditDocument/addEditDocument.component';
 import { TableRolesComponent } from './tables/table-roles/table-roles.component';
 import { TableRolesPermisosComponent } from './tables/table-roles-permisos/table-roles-permisos.component';
 import { TableUserComponent } from './tables/table-users/table-users.component';
@@ -18,6 +19,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatGridListModule} from '@angular/material/grid-list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -41,7 +43,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     TopBarComponent,
     TableUserComponent,
     TableRolesComponent,
-    TableRolesPermisosComponent
+    TableRolesPermisosComponent,
+    AddEditDocumentComponent,
   ],
   imports: [
     CommonModule,
@@ -66,6 +69,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
     MatExpansionModule,
+    MatGridListModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
     NgxLoadingModule.forRoot({})

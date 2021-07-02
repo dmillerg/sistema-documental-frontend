@@ -26,7 +26,7 @@ export class MenuComponent implements OnInit {
       icon: 'books',
       arrow: true,
       children: [
-        { name: 'secretos', icon: 'assignment', path: 'menu' },
+        { name: 'secretos', icon: 'assignment', path: 'documentos' },
         { name: 'oficiales', icon: 'notes', path: 'drag' }
       ]
     },

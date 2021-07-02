@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ModalDeleteComponent } from 'src/app/components/modals/modal-delete/modal-delete.component';
 import { FormControl } from '@angular/forms';
 import { error } from 'protractor';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 /**
  * @title Table retrieving data through HTTP
@@ -59,7 +60,7 @@ export class TableUserComponent implements AfterViewInit {
 
   message_server: string = '';
 
-  constructor(private api: ApiService, private modalService: NgbModal) { }
+  constructor(private api: ApiService, private modalService: NgbModal,private toastrService: ToastService) { }
 
   ngAfterViewInit() {
     this.loadData();

@@ -1,6 +1,7 @@
 import { ApiService } from './../../../service/api.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-modal-delete',
@@ -19,7 +20,7 @@ export class ModalDeleteComponent implements OnInit {
 
   disable_button = true;
 
-  constructor(private activeModal: NgbActiveModal, private api: ApiService) {
+  constructor(private activeModal: NgbActiveModal, private api: ApiService, private toastrService: ToastService) {
     this.actiModal = this.activeModal;
   }
 
@@ -32,11 +33,19 @@ export class ModalDeleteComponent implements OnInit {
         this.api.DeleteUsuario(this.id).subscribe((result) => {
           console.log(result);
           this.activeModal.close(result);
-        });
+          this.toastrService.success("Usuario borrado satisfactoriamente", "Mensaje");
+        },
+          (err) => {
+            this.toastrService.error(err.error.message, "Error");
+          });
         break;
       case "Rol":
         this.api.DeleteRol(this.id).subscribe((result) => {
           console.log(this.activeModal.close(result));
+          this.toastrService.success("Rol borrado satisfactoriamente", "Mensaje");
+        },
+        (err) => {
+          this.toastrService.error(err.error.message, "Error");
         })
       default:
         console.log("default");

@@ -5,6 +5,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { formatDate } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { Roles } from 'src/app/models/roles';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-modal-rol',
@@ -43,7 +44,7 @@ export class ModalRolComponent implements OnInit {
   description_old = '';
 
   // toppingList: string[] = ['usuario', 'nombre', 'fecha de registro', 'hora de registro'];
-  constructor(private activeModal: NgbActiveModal, private api: ApiService) {
+  constructor(private activeModal: NgbActiveModal, private api: ApiService,private toastrService: ToastService) {
     this.actiModal = this.activeModal;
   }
 
@@ -69,11 +70,17 @@ export class ModalRolComponent implements OnInit {
       this.api.AddRol(this.rol).subscribe((result) => {
         // Emitir contenido desde el modal al padre al cerrarlo
         this.activeModal.close(this.rol);
+        this.toastrService.success("Rol creado satisfactoriamente "+this.rol_name,"Mensaje");
+      },(error)=>{
+        this.toastrService.error("Ocurrio un error al crear el rol: " + error.error.message ,"Error");
       });
     } else {
       this.api.UpdateRol(this.rol).subscribe((result) => {
         // Emitir contenido desde el modal al padre al cerrarlo
         this.activeModal.close(this.rol);
+        this.toastrService.success("Rol actualizado satisfactoriamente "+this.rol_name,"Mensaje");
+      },(error)=>{
+        this.toastrService.error("Ocurrio un error al actualizar el rol: " + error.error.message ,"Error");
       });
     }
   }
