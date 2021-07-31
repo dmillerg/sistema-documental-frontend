@@ -5,6 +5,7 @@ import { Usuarios } from './../models/usuarios';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Login } from '../models/login';
+import { Documents } from '../models/documents';
 
 @Injectable({
   providedIn: 'root'
@@ -212,5 +213,15 @@ export class ApiService {
   deleteAvatarUser(id: number){
     let direccion = this.url + 'avatar/' + id;
     return this.http.delete(direccion);
+  }
+
+  /**
+   * obtiene todos los documentos permitidos para el usuario
+   * @param id
+   * @returns
+   */
+  getDocuments(id: number): Observable<Documents[]>{
+    let direccion = this.url + 'documents/' + id;
+    return this.http.get<Documents[]>(direccion);
   }
 }

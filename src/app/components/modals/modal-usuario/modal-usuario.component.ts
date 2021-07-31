@@ -39,7 +39,7 @@ export class ModalUsuarioComponent implements OnInit {
     confirm: new FormControl('')
   });
 
-  src_avatar;
+  src_avatar = './../../.././../ctc.png';
   colorEstado = '#f00';
 
   form_user_past = new FormGroup({
@@ -73,7 +73,7 @@ export class ModalUsuarioComponent implements OnInit {
       this.form_user_past.value.password = this.form_user.value.password;
       this.form_user_past.value.full_name = this.form_user.value.full_name;
       this.api.getAvatarUser(this.form_user.value.id).subscribe((result) => {
-        this.src_avatar = result;
+        this.src_avatar = result + '';
       }, (error) => {
         this.src_avatar = error.url;
       });
@@ -137,6 +137,7 @@ export class ModalUsuarioComponent implements OnInit {
       formData.append("roles", JSON.stringify(this.form_user.value.rol_usuario));
       this.api.deleteAvatarUser(this.form_user.value.id).subscribe((result)=>{
         this.api.UpdateUsuario(formData, this.form_user.value.id).subscribe((result) => {
+          // location.reload(true);
           // Emitir contenido desde el modal al padre al cerrarlo
           this.activeModal.close(this.form_user.value);
         });

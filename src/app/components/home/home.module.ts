@@ -1,4 +1,3 @@
-import { AddEditDocumentComponent } from './addEditDocument/addEditDocument.component';
 import { TableRolesComponent } from './tables/table-roles/table-roles.component';
 import { TableRolesPermisosComponent } from './tables/table-roles-permisos/table-roles-permisos.component';
 import { TableUserComponent } from './tables/table-users/table-users.component';
@@ -33,6 +32,8 @@ import { SidenavHomeComponent } from './sidenav-home/sidenav-home.component';
 import { MenuComponent } from './menu/menu.component';
 import { TopBarComponent } from './../top-bar/top-bar.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { DocumentListComponent } from './document-list/document-list.component';
+import { DocumentItemComponent } from './document-list/document-item/document-item.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     TableUserComponent,
     TableRolesComponent,
     TableRolesPermisosComponent,
-    AddEditDocumentComponent,
+    DocumentListComponent,
+    DocumentItemComponent,
   ],
   imports: [
     CommonModule,

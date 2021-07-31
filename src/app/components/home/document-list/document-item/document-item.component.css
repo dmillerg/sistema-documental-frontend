@@ -1,0 +1,18 @@
+.bg-darkest {
+  background-color: rgba(37, 37, 37);
+  color: whitesmoke;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.texto{
+  max-height: 50px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.item-document{
+  max-height: 400px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+  margin-left: 10px;
+  margin-right: 10px;
+}

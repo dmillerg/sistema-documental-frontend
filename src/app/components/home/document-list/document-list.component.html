@@ -1,0 +1,15 @@
+<div class="bg-dark full-container">
+  <app-top-bar [modal_header]="title" [modal_icon]="icon" [modal_subheader]="subtitle"
+    (emisor)="registerOrUpdate($event)">
+  </app-top-bar>
+  <!-- <div class="lista-document" *ngFor="let item of documentos">
+    <app-document-item [title]="item" ></app-document-item>
+  </div> -->
+<div class="lista-document">
+  <mat-grid-list [cols]="breakpoint" rowHeight="1.5:2" (window:resize)="onResize($event)"  >
+    <mat-grid-tile *ngFor="let item of documentos">
+        <app-document-item [title]="item.title" [description]="item.descripcion" [date]="item.date" [src_document]="item.imagen"></app-document-item>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+</div>

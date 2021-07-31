@@ -37,7 +37,7 @@
 }
 
 .auth::before {
-    content: "autenticar";
+    content: "Autenticar";
 }
 
 .auth {
@@ -49,4 +49,22 @@
     border-radius: 5px;
     background-color: #d4352f;
     box-shadow: 1px 1px 1px rgb(12, 12, 12);
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: white;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+  color: white!important;
+  opacity: 0.8!important;
+}
+/* // mat-input carent color */
+
+::ng-deep .mat-input-element {
+  caret-color: white!important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: white;
 }

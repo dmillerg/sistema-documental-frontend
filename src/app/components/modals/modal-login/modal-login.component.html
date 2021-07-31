@@ -3,16 +3,16 @@
     <div class="modal-header" style="background-color:rgba(27, 27, 27, 27);">
         <div style="text-align: center;margin-block-start: 1%;">
             <img mat-card-image src="./../../../../ctc.png" style="width: 70px;height: 70px;background-color: rgba(27, 27, 27, 27);padding: 5px;" class=" rounded-circle">
-            <h2 class="modal-title">Bienvenido al sistema documental de la CTC</h2>
+            <h2 class="modal-title">Bienvenido al Sistema Documental de la CTC</h2>
         </div>
     </div>
     <div class="modal-body">
-        <p>debe autenticarse antes de poder acceder</p>
+        <!-- <p>debe autenticarse antes de poder acceder</p> -->
 
         <form>
             <div class="contenedor">
                 <mat-hint *ngIf="message_error" style="color: brown;">usuario o contraseña incorrecta</mat-hint>
-                <mat-form-field appearance="outline" color="warn">
+                <mat-form-field appearance="outline" color="warn" style="margin-bottom: -25px;">
                     <input matInput type="text" placeholder="usuario" name="user" [(ngModel)]="user" (ngModelChange)="validar()">
                     <mat-icon matSuffix>person</mat-icon>
                 </mat-form-field>
@@ -26,7 +26,7 @@
         </form>
     </div>
 
-    <div class="text-center" style="margin-bottom: 10px;">
+    <div class="text-center" style="margin-bottom: 30px;">
         <button id="accept" class="auth" data-dismiss="modal" (click)="onSubmit()"><mat-icon *ngIf="!ok">check</mat-icon></button>
     </div>
 

@@ -1,0 +1,14 @@
+<mat-card class="bg-darkest item-document">
+  <mat-card-header>
+    <img mat-card-avatar [src]="src_document">
+    <mat-card-title>{{title}}</mat-card-title>
+    <mat-card-subtitle style="font-size: xx-small;">{{date}}</mat-card-subtitle>
+  </mat-card-header>
+  <img matCardImage style="height: 150px;padding-inline: 10px;" [src]="src_document">
+  <mat-card-content class="texto" style="font-size: small;" matTooltip="{{description}}">
+    {{description}}
+  </mat-card-content>
+  <mat-card-actions align="start">
+    <!-- <button mat-button >Action1</button> -->
+  </mat-card-actions>
+</mat-card>

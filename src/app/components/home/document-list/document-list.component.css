@@ -1,0 +1,11 @@
+.full-container {
+  padding-top: 25px;
+  padding-inline: 20px;
+}
+
+.lista-document{
+  margin-top: 20px;
+  height: 480px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
