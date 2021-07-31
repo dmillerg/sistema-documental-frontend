@@ -16,6 +16,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -74,7 +75,8 @@ import { DocumentItemComponent } from './document-list/document-item/document-it
     MatGridListModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
+    MatMenuModule,
   ]
 })
 export class HomeModule { }

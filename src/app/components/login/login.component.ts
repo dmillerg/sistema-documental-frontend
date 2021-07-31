@@ -1,6 +1,5 @@
 import { LocalStorageService } from 'ngx-webstorage';
 import { ModalLoginComponent } from './../modals/modal-login/modal-login.component';
-import { ModalDocumentsComponent } from './../modals/modal-documents/modal-documents.component';
 import { Router } from '@angular/router';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';

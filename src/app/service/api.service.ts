@@ -224,4 +224,24 @@ export class ApiService {
     let direccion = this.url + 'documents/' + id;
     return this.http.get<Documents[]>(direccion);
   }
+
+  /**
+   * Agrega un nuevo usuario a la base de datos
+   * @param formData
+   * @returns
+   */
+  AddDocument(formData){
+    let direccion = this.url + 'documents';
+    return this.http.post(direccion, formData);
+  }
+
+  /**
+   * Obtiene la imagen de los documentos por el id
+   * @param id
+   * @returns
+   */
+  getDocumentsFoto(id){
+    let direccion = this.url + 'documentsFoto/' + id;
+    return this.http.get(direccion);
+  }
 }

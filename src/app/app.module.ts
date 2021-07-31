@@ -29,12 +29,12 @@ import { MatSortModule } from '@angular/material/sort';
 import { LoginComponent } from './components/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { ModalDocumentsComponent } from './components/modals/modal-documents/modal-documents.component';
 import { ModalUsuarioComponent } from './components/modals/modal-usuario/modal-usuario.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatBadgeModule} from '@angular/material/badge';
 import { ModalDeleteComponent } from './components/modals/modal-delete/modal-delete.component';
+import { ModalDocumentComponent } from './components/modals/modal-document/modal-document.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { ToastrModule } from 'ngx-toastr';
@@ -44,12 +44,12 @@ import { ToastModule } from 'ng-uikit-pro-standard';
   declarations: [
     AppComponent,
     LoginComponent,
-    ModalDocumentsComponent,
     ModalUsuarioComponent,
     ModalRolComponent,
     ModalPermisosComponent,
     ModalDeleteComponent,
-    ModalLoginComponent
+    ModalLoginComponent,
+    ModalDocumentComponent,
   ],
   imports: [
     BrowserModule,

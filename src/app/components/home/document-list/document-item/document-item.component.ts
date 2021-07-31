@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DocumentItemComponent implements OnInit {
 
+  @Input() id: number = -1;
   @Input() src_document: string = './../../../../../ctc.png';
   @Input() date: string = '';
   @Input() title: string = '';
@@ -16,7 +17,7 @@ export class DocumentItemComponent implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
-    this.api.getAvatarUser(130).subscribe((result)=>{
+    this.api.getDocumentsFoto(this.id).subscribe((result)=>{
       this.src_document = result+'';
     },(error)=>{
       this.src_document = error.url;

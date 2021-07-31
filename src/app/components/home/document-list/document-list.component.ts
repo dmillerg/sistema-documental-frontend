@@ -14,6 +14,7 @@ export class DocumentListComponent implements OnInit {
   documentos: any[] = [];
   breakpoint;
   server_message;
+  isLoadingResults: boolean = true;
 
   constructor(private api: ApiService) { }
 
@@ -27,14 +28,24 @@ export class DocumentListComponent implements OnInit {
   }
 
   registerOrUpdate(event: boolean) {
-    console.log(event);
+    this.loadData();
   }
 
   loadData() {
+    this.isLoadingResults = true
     this.api.getDocuments(1).subscribe((result) => {
-      this.documentos = result;
+      if (result.length > 0) {
+        this.documentos = result;
+        this.isLoadingResults = false;
+      }else{
+        this.documentos = [];
+        this.isLoadingResults = false;
+        this.server_message = 'No hay documentos en estos momentos';
+      }
     }, (error) => {
       console.log(error);
+      this.isLoadingResults = false;
+      this.server_message = error.message;
     });
   }
 

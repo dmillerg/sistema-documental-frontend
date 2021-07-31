@@ -1,8 +1,14 @@
 <mat-card class="bg-darkest item-document">
   <mat-card-header>
     <img mat-card-avatar [src]="src_document">
-    <mat-card-title>{{title}}</mat-card-title>
-    <mat-card-subtitle style="font-size: xx-small;">{{date}}</mat-card-subtitle>
+    <mat-card-title style="font-size: medium;color: #f44336;">{{title}}</mat-card-title>
+    <mat-card-subtitle style="font-size: xx-small; color: white;">{{date}}</mat-card-subtitle>
+    <button mat-icon-button style="position: absolute;right: 5px;top: 16px;" [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+    <mat-menu #menu="matMenu" class="bg-dark">
+      <button mat-menu-item style="color: white;">actualizar</button>
+      <button mat-menu-item style="color: white;">eliminar</button>
+    </mat-menu>
+
   </mat-card-header>
   <img matCardImage style="height: 150px;padding-inline: 10px;" [src]="src_document">
   <mat-card-content class="texto" style="font-size: small;" matTooltip="{{description}}">
