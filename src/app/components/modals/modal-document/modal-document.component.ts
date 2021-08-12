@@ -44,9 +44,10 @@ export class ModalDocumentComponent implements OnInit {
     date: new FormControl(''),
   });
 
-
-  valid: boolean = false;
-  disable_register = true;
+  disable_register: boolean = true;
+  text_visibility: string = '';
+  estado: boolean = false;
+  estado_past: boolean = false;
 
   constructor(private activeModal: NgbActiveModal, private api: ApiService) {
     this.actiModal = this.activeModal;
@@ -58,12 +59,7 @@ export class ModalDocumentComponent implements OnInit {
       this.form_document_past.value.descripcion = this.form_document.value.descripcion;
       this.form_document_past.value.imagen = this.form_document.value.imagen;
       this.form_document_past.value.date = this.form_document.value.date;
-
-      this.api.getAvatarUser(this.form_document.value.id).subscribe((result) => {
-        this.src_document = result + '';
-      }, (error) => {
-        this.src_document = error.url;
-      });
+      this.estado = this.estado;
     }
   }
 
@@ -89,19 +85,20 @@ export class ModalDocumentComponent implements OnInit {
     formData.append("descripcion", this.form_document.value.descripcion);
     formData.append("imagen", this.form_document.value.imagen);
     formData.append("date", this.form_document.value.date);
+    formData.append("estado", this.estado+'');
+    console.log(this.estado);
     if (this.modal_action == "Agregar") {
       this.api.AddDocument(formData).subscribe((result) => {
         // Emitir contenido desde el modal al padre al cerrarlo
         this.activeModal.close(this.form_document.value);
       });
     } else {
-      this.api.deleteAvatarUser(this.form_document.value.id).subscribe((result) => {
-        this.api.UpdateUsuario(formData, this.form_document.value.id).subscribe((result) => {
-          // location.reload(true);
-          // Emitir contenido desde el modal al padre al cerrarlo
-          this.activeModal.close(this.form_document.value);
-        });
+      this.api.updateDocument(this.form_document.value.id, formData).subscribe((result) => {
+        // location.reload(true);
+        // Emitir contenido desde el modal al padre al cerrarlo
+        this.activeModal.close(this.form_document.value);
       });
+
 
     }
   }
@@ -112,6 +109,7 @@ export class ModalDocumentComponent implements OnInit {
    * y si ademas en caso de agregar ningun campo se encuentra vacio
    */
   validarCambio() {
+    console.log("validar cambio", this.modal_action);
     if (this.modal_action == 'Editar') {
       this.disable_register = !this.validarCambioFormulario();
     } else {
@@ -125,10 +123,12 @@ export class ModalDocumentComponent implements OnInit {
    * @returns
    */
   validarCambioFormulario(): boolean {
+    console.log(this.form_document.value.estado);
     return (this.form_document_past.value.title != this.form_document.value.title ||
       this.form_document_past.value.descripcion != this.form_document.value.descripcion ||
-      this.form_document_past.value.imagen != this.form_document.value.imagen ||
-      this.form_document_past.value.date != this.form_document.value.date);
+      this.src != this.src_document ||
+      this.form_document_past.value.date != this.form_document.value.date ||
+      this.estado_past != this.estado);
   }
 
   /**
@@ -165,5 +165,17 @@ export class ModalDocumentComponent implements OnInit {
 
   deleteImage() {
     this.src_document = undefined;
+  }
+
+  visibilidadChange() {
+    console.log("visibilidad change");
+    this.estado = !this.estado;
+    console.log(this.estado);
+    if (this.estado) {
+      this.text_visibility = 'privado';
+    } else {
+      this.text_visibility = 'publico';
+    }
+    this.validarCambio();
   }
 }

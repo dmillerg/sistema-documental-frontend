@@ -59,3 +59,14 @@
     float: none;
     position: relative;
 }
+
+.icon-visibility{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.icon {
+  font-size: 40px;
+  cursor: pointer;
+}

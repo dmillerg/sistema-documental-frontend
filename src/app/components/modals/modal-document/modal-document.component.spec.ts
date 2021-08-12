@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { ModalUsuarioComponent } from './modal-document.component';
+import { ModalDocumentComponent } from './modal-document.component';
 
-describe('ModalUsuarioComponent', () => {
-  let component: ModalUsuarioComponent;
-  let fixture: ComponentFixture<ModalUsuarioComponent>;
+describe('ModalDocumentComponent', () => {
+  let component: ModalDocumentComponent;
+  let fixture: ComponentFixture<ModalDocumentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalUsuarioComponent ]
+      declarations: [ ModalDocumentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalUsuarioComponent);
+    fixture = TestBed.createComponent(ModalDocumentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

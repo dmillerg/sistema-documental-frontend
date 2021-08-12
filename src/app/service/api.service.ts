@@ -48,7 +48,7 @@ export class ApiService {
    * @param user
    * @returns void
    */
-  UpdateUsuario(formData,id) {
+  UpdateUsuario(formData, id) {
     const headers = { 'content-type': 'application/json' };
     let direccion = this.url + 'usuarios/' + id;
     return this.http.post(direccion, formData);
@@ -177,10 +177,10 @@ export class ApiService {
    * @param user_id
    * @returns
    */
-  ObtenerRolesByUser(user_id: number = -1): Observable<Roles[]>{
-    let direccion = this.url +'/rolesbyuser/'+user_id;
+  ObtenerRolesByUser(user_id: number = -1): Observable<Roles[]> {
+    let direccion = this.url + '/rolesbyuser/' + user_id;
     const headers = { 'content-type': 'application/json' };
-    return this.http.get<Roles[]>(direccion, { 'headers': headers});
+    return this.http.get<Roles[]>(direccion, { 'headers': headers });
   }
 
   /**
@@ -189,10 +189,10 @@ export class ApiService {
    * @param pass
    * @returns
    */
-  LoginUser(user: string, pass: string): Observable<Login>{
+  LoginUser(user: string, pass: string): Observable<Login> {
     let direccion = this.url + '/login';
-    let body = {"user": user, "pass": pass};
-    return this.http.post<Login>(direccion,body);
+    let body = { "user": user, "pass": pass };
+    return this.http.post<Login>(direccion, body);
   }
 
   /**
@@ -200,7 +200,7 @@ export class ApiService {
    * @param id
    * @returns
    */
-  getAvatarUser(id: number){
+  getAvatarUser(id: number) {
     let direccion = this.url + 'avatar/' + id;
     return this.http.get(direccion);
   }
@@ -210,7 +210,7 @@ export class ApiService {
    * @param id
    * @returns
    */
-  deleteAvatarUser(id: number){
+  deleteAvatarUser(id: number) {
     let direccion = this.url + 'avatar/' + id;
     return this.http.delete(direccion);
   }
@@ -220,9 +220,13 @@ export class ApiService {
    * @param id
    * @returns
    */
-  getDocuments(id: number): Observable<Documents[]>{
+  getDocuments(id: number, filtro_visivility: string): Observable<Documents[]> {
     let direccion = this.url + 'documents/' + id;
-    return this.http.get<Documents[]>(direccion);
+    const headers = { 'content-type': 'application/json' };
+    let body = {
+      'filtro_visibility': filtro_visivility,
+    }
+    return this.http.get<Documents[]>(direccion, { 'headers':headers, params: body });
   }
 
   /**
@@ -230,7 +234,7 @@ export class ApiService {
    * @param formData
    * @returns
    */
-  AddDocument(formData){
+  AddDocument(formData) {
     let direccion = this.url + 'documents';
     return this.http.post(direccion, formData);
   }
@@ -240,8 +244,30 @@ export class ApiService {
    * @param id
    * @returns
    */
-  getDocumentsFoto(id){
+  getDocumentsFoto(id) {
     let direccion = this.url + 'documentsFoto/' + id;
     return this.http.get(direccion);
+  }
+
+  /**
+   * Borra un documento apartir de un id
+   * @param id
+   * @returns
+   */
+  deleteDocument(id: number = -1) {
+    let direccion = this.url + 'documents/' + id;
+    return this.http.delete(direccion);
+  }
+
+  /**
+   * Actualiza los datos de un documento apartir de un id
+   * @param id
+   * @param formData
+   * @returns
+   */
+  updateDocument(id: number = -1, formData) {
+    console.log('ada');
+    let direccion = this.url + 'documents/' + id;
+    return this.http.post(direccion, formData);
   }
 }

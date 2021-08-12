@@ -6,14 +6,17 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
-    <p>{{modalmessage}}</p>
-
-
+  <div class="modal-body" style="padding-top: 5px;">
     <form [formGroup]="form_document">
       <div class="contenedor">
-        <img [src]="src_document" style="width: 100%;height: 150px;"
-          class="img-thumbnail rounded " (click)="changeImage()">
+        <div class="icon-visibility" (click)="visibilidadChange()">
+          <mat-icon id="icon" name="icon" matTooltip="{{text_visibility}}" class="text-danger icon" *ngIf="estado == true"  mat-card-avatar>
+            bookmark</mat-icon>
+          <mat-icon id="icon" name="icon" matTooltip="{{text_visibility}}" class="text-success icon" *ngIf="estado == false" mat-card-avatar>
+            bookmark</mat-icon>
+        </div>
+        <img [src]="src_document" style="width: 100%;height: 150px;" class="img-thumbnail rounded "
+          (click)="changeImage()">
         <div class="file-select" id="src-file1" style="cursor: pointer;" [hidden]="true">
           <input id="imagefile" type="file" name="src-file1" aria-label="Imagen" style="cursor: pointer;"
             (change)="fileEvent($event)" accept="image/*">
@@ -28,8 +31,9 @@
         </mat-form-field>
         <mat-form-field appearance="outline" color="warn">
           <mat-label>Descripcion</mat-label>
-          <textarea matInput #descrip maxlength="200" placeholder="Descripcion" formControlName="descripcion"
-            (ngModelChange)="validarCambio()" name="descripcion"></textarea>
+          <textarea matInput #descrip maxlength="200" style="overflow-y: scroll;scrollbar-width: none;"
+            placeholder="Descripcion" formControlName="descripcion" (ngModelChange)="validarCambio()"
+            name="descripcion"></textarea>
           <mat-icon matSuffix type="button">description</mat-icon>
           <mat-hint style="color: white;" align="end">{{descrip.value.length}} / 200</mat-hint>
           <!-- <mat-hint>Hint</mat-hint> -->

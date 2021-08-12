@@ -51,7 +51,7 @@ export class TopBarComponent implements OnInit {
           }
         });
         break;
-        case "Permisos":
+      case "Permisos":
         var modal = this.modalService.open(ModalPermisosComponent);
         modal.componentInstance.modalHeader = "permisos";
         modal.componentInstance.modalmessage = "Se debe rellenar todos los campos marcados con un asterisco";
@@ -63,16 +63,17 @@ export class TopBarComponent implements OnInit {
           }
         });
         break;
-        case 'Documentos Secretos':
-          var modal = this.modalService.open(ModalDocumentComponent, {size: 'sm'});
-          modal.componentInstance.modalHeader = "documentos";
-          modal.componentInstance.modalmessage = "Se debe rellenar todos los campos marcados con un asterisco";
-          modal.componentInstance.modal_action = "Agregar";
-          modal.result.then((result) => {
-            if (result) {
-              this.registerOrUpdate();
-            }
-          });
+      case 'Documentos Secretos':
+        var modal = this.modalService.open(ModalDocumentComponent, { size: 'sm' });
+        modal.componentInstance.modalHeader = "documentos";
+        modal.componentInstance.modalmessage = "Se debe rellenar todos los campos marcados con un asterisco";
+        modal.componentInstance.modal_action = "Agregar";
+        modal.result.then((result) => {
+          if (result) {
+            this.registerOrUpdate();
+          }
+        });
+        break;
       default:
         console.log("default");
     }
