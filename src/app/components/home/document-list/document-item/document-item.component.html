@@ -1,27 +1,27 @@
-<mat-card class="bg-darkest item-document" (click)="updateDocument()">
-  <mat-card-header>
-    <mat-icon id="icon" matTooltip="{{estado_text}}" name="icon" class="text-danger" *ngIf="estado" mat-card-avatar>
-      bookmark</mat-icon>
-    <mat-icon id="icon" matTooltip="{{estado_text}}" name="icon" class="text-success" *ngIf="!estado" mat-card-avatar>
-      bookmark</mat-icon>
-    <mat-card-title style="font-size: medium;color: #f44336;">{{title}}</mat-card-title>
-    <mat-card-subtitle style="font-size: xx-small; color: white;">{{date}}</mat-card-subtitle>
-    <button mat-icon-button style="position: absolute;right: 5px;top: 5px;" [matMenuTriggerFor]="menu">
+<mat-card class="bg-darkest item-document">
+    <mat-card-header>
+        <mat-icon id="icon" matTooltip="{{estado_text}}" name="icon" class="text-danger" *ngIf="estado" mat-card-avatar>
+            bookmark</mat-icon>
+        <mat-icon id="icon" matTooltip="{{estado_text}}" name="icon" class="text-success" *ngIf="!estado" mat-card-avatar>
+            bookmark</mat-icon>
+        <mat-card-title style="font-size: medium;color: #f44336;">{{title}}</mat-card-title>
+        <mat-card-subtitle style="font-size: xx-small; color: white;">{{date}}</mat-card-subtitle>
+        <button mat-icon-button style="position: absolute;right: 5px;top: 5px;" [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu" class="bg-dark">
-      <button mat-menu-item (click)="updateDocument()" style="color: white;">actualizar</button>
-      <button mat-menu-item (click)="deleteDocument()" style="color: white;">eliminar</button>
-    </mat-menu>
+        <mat-menu #menu="matMenu" class="bg-dark">
+            <button mat-menu-item (click)="updateDocument()" style="color: white;">actualizar</button>
+            <button mat-menu-item (click)="deleteDocument()" style="color: white;">eliminar</button>
+        </mat-menu>
 
-  </mat-card-header>
-  <div class="text-center">
-    <img  class="img-thumbnail" style="height: 150px;width: 100%;" [src]="src_document">
-  </div>
-  <mat-card-content class="texto" style="font-size: small; margin-top: 10px;" matTooltip="{{description}}">
-    {{description}}
-  </mat-card-content>
-  <mat-card-actions align="start">
-    <!-- <button mat-button >Action1</button> -->
-  </mat-card-actions>
+    </mat-card-header>
+    <div class="text-center">
+        <img class="img-thumbnail" style="height: 150px;width: 100%;" [src]="src_document">
+    </div>
+    <mat-card-content class="texto" style="font-size: small; margin-top: 10px;" matTooltip="{{description}}">
+        {{description}}
+    </mat-card-content>
+    <mat-card-actions align="start">
+        <!-- <button mat-button >Action1</button> -->
+    </mat-card-actions>
 </mat-card>
