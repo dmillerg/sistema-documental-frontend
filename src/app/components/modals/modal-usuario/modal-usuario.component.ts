@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Roles } from 'src/app/models/roles';
 import { ApiService } from './../../../service/api.service';
 import { Usuarios } from './../../../models/usuarios';
@@ -58,6 +59,7 @@ export class ModalUsuarioComponent implements OnInit {
   disable_register = true;
 
   roles;
+  roles2;
 
   rol_usuario_old: Roles[];
   // toppingList: string[] = ['usuario', 'nombre', 'fecha de registro', 'hora de registro'];
@@ -67,11 +69,16 @@ export class ModalUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.roles2);
     if (this.modal_action == "Editar") {
       this.form_user.value.confirm = this.form_user.value.password;
       this.form_user_past.value.user = this.form_user.value.user;
       this.form_user_past.value.password = this.form_user.value.password;
       this.form_user_past.value.full_name = this.form_user.value.full_name;
+      this.roles2.forEach(element => {
+        this.form_user.value.rol_usuario.push(element);
+        
+      });
       this.api.getAvatarUser(this.form_user.value.id).subscribe((result) => {
         this.src_avatar = result;
       }, (error) => {

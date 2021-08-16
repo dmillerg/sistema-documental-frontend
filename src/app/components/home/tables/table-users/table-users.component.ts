@@ -60,7 +60,7 @@ export class TableUserComponent implements AfterViewInit {
 
   message_server: string = '';
 
-  constructor(private api: ApiService, private modalService: NgbModal,private toastrService: ToastService) { }
+  constructor(private api: ApiService, private modalService: NgbModal) { }
 
   ngAfterViewInit() {
     this.loadData();
@@ -104,28 +104,32 @@ export class TableUserComponent implements AfterViewInit {
   }
 
   actualizarUsuario(row: Usuarios) {
-    var modal = this.modalService.open(ModalUsuarioComponent);
-    modal.componentInstance.modalHeader = "Usuario";
-    modal.componentInstance.modalmessage = "Debe al menos modificar uno de los campos";
-    modal.componentInstance.modal_action = "Editar";
-    modal.componentInstance.form_user.setValue({
-      id: row.id,
-      user: row.user,
-      password: row.password,
-      full_name: row.full_name,
-      register_date: row.register_date,
-      register_hour: row.register_hour,
-      avatar: row.avatar,
-      rol_usuario: '',
-      confirm: row.password
+    this.api.ObtenerRolesByUser(row.id).subscribe((result)=>{
+      var modal = this.modalService.open(ModalUsuarioComponent);
+      modal.componentInstance.modalHeader = "Usuario";
+      modal.componentInstance.modalmessage = "Debe al menos modificar uno de los campos";
+      modal.componentInstance.modal_action = "Editar";
+      modal.componentInstance.form_user.setValue({
+        id: row.id,
+        user: row.user,
+        password: row.password,
+        full_name: row.full_name,
+        register_date: row.register_date,
+        register_hour: row.register_hour,
+        avatar: row.avatar,
+        rol_usuario: result,
+        confirm: row.password
+      });
+      modal.componentInstance.roles2 = result;
+
+      // Emitir desde el modal contenido de este al cerrarlo
+      modal.result.then((result) => {
+        if (result) {
+          this.loadData();
+        }
+      });
     });
 
-    // Emitir desde el modal contenido de este al cerrarlo
-    modal.result.then((result) => {
-      if (result) {
-        this.loadData();
-      }
-    });
   }
 
   eliminarUser(id: number) {
