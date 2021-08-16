@@ -14,6 +14,7 @@ export class SidenavHomeComponent implements OnInit {
 
   id_usuario: number = -1;
   user: string ='';
+  rol: string = '';
   nombre: string ='';
   src_avatar;
 
@@ -30,6 +31,7 @@ constructor(private breakpointObserver: BreakpointObserver, private storage: Loc
     this.id_usuario = usuario.id;
     this.user = usuario.user;
     this.nombre = usuario.full_name;
+    this.rol = usuario.rol_name;
 
     this.api.getAvatarUser(this.id_usuario).subscribe((result) => {
       this.src_avatar = result;

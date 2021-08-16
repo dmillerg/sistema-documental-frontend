@@ -26,3 +26,7 @@ body {
 .modal-content {
     background-color: rgba(27, 27, 27, 27);
 }
+
+::-webkit-scrollbar{
+  display: none;
+}

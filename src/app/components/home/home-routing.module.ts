@@ -1,4 +1,4 @@
-import { AddEditDocumentComponent } from './addEditDocument/addEditDocument.component';
+import { DocumentListComponent } from './document-list/document-list.component';
 import { TableRolesComponent } from './tables/table-roles/table-roles.component';
 import { TableRolesPermisosComponent } from './tables/table-roles-permisos/table-roles-permisos.component';
 import { TableUserComponent } from './tables/table-users/table-users.component';
@@ -18,7 +18,7 @@ const routes: Routes = [
       { path: 'users', component:TableUserComponent},
       { path: 'roles', component:TableRolesComponent},
       { path: 'roles-permisos', component:TableRolesPermisosComponent },
-      { path: 'documentos', component:AddEditDocumentComponent },
+      { path: 'documentos', component:DocumentListComponent },
     ]
   },
 ];

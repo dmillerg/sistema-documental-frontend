@@ -44,7 +44,15 @@ export class ModalDeleteComponent implements OnInit {
           console.log(this.activeModal.close(result));
           this.toastrService.success("Rol borrado satisfactoriamente", "Mensaje");
         },
-        (err) => {
+          (err) => {
+            this.toastrService.error(err.error.message, "Error");
+          });
+        break;
+      case "Documento":
+        this.api.deleteDocument(this.id).subscribe((result) => {
+          console.log(this.activeModal.close(result));
+          this.toastrService.success("Documento borrado satisfactoriamente", "Mensaje");
+        }, (err) => {
           this.toastrService.error(err.error.message, "Error");
         })
       default:
