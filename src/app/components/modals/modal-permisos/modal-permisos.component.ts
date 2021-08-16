@@ -52,7 +52,16 @@ export class ModalPermisosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.api.getPermisosRol(this.rol_id).subscribe((result)=>{
+      this.permisos.is_all = result[0].is_all == 1;
+      this.permisos.is_create = result[0].is_create == 1;
+      this.permisos.is_edit = result[0].is_edit == 1;
+      this.permisos.is_delete = result[0].is_delete == 1;
+      this.permisos.is_read = result[0].is_read == 1;
+    });
+    console.log(this.permisos);
     if (this.modal_action == "Editar") {
+
       this.permisos_old.is_all = this.permisos.is_all;
       this.permisos_old.is_edit = this.permisos.is_edit;
       this.permisos_old.is_create = this.permisos.is_create;

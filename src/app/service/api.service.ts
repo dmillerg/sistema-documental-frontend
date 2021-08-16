@@ -1,3 +1,4 @@
+import { Permisos } from './../models/permisos';
 import { Roles } from './../models/roles';
 import { RolesPermisos } from '../models/roles-permisos';
 import { Observable } from 'rxjs';
@@ -266,8 +267,17 @@ export class ApiService {
    * @returns
    */
   updateDocument(id: number = -1, formData) {
-    console.log('ada');
     let direccion = this.url + 'documents/' + id;
     return this.http.post(direccion, formData);
+  }
+
+  /**
+   * Obtener los permisos asignados al rol
+   * @param rol_id
+   * @returns
+   */
+  getPermisosRol(rol_id: number = -1): Observable<Permisos>{
+    let direccion = this.url + 'rolypermisos/' + rol_id;
+    return this.http.get<Permisos>(direccion);
   }
 }
