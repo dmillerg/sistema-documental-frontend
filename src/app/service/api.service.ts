@@ -7,6 +7,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Login } from '../models/login';
 import { Documents } from '../models/documents';
+import { UserOnline } from '../models/useronline';
+import { UserHistory } from '../models/userhistory';
 
 @Injectable({
   providedIn: 'root'
@@ -196,6 +198,11 @@ export class ApiService {
     return this.http.post<Login>(direccion, body);
   }
 
+  LogoutUser(user_id: number = -1) {
+    let direccion = this.url + '/logout/' + user_id;
+    return this.http.delete(direccion);
+  }
+
   /**
    * devuelve el avatar del usuario a partir de un id
    * @param id
@@ -227,7 +234,7 @@ export class ApiService {
     let body = {
       'filtro_visibility': filtro_visivility,
     }
-    return this.http.get<Documents[]>(direccion, { 'headers':headers, params: body });
+    return this.http.get<Documents[]>(direccion, { 'headers': headers, params: body });
   }
 
   /**
@@ -276,8 +283,27 @@ export class ApiService {
    * @param rol_id
    * @returns
    */
-  getPermisosRol(rol_id: number = -1): Observable<Permisos>{
+  getPermisosRol(rol_id: number = -1): Observable<Permisos> {
     let direccion = this.url + 'rolypermisos/' + rol_id;
     return this.http.get<Permisos>(direccion);
+  }
+
+  /**
+   * Obtener datos de usuarios online
+   * @returns
+   */
+  getUsersOnline(): Observable<UserOnline[]> {
+    let direccion = this.url + 'useronline';
+    return this.http.get<UserOnline[]>(direccion);
+  }
+
+  /**
+   * Obtener el historial de un usuario a partir de su id
+   * @param user_id
+   * @returns
+   */
+  getUserHistory(user_id: number = -1): Observable<UserHistory[]> {
+    let direccion = this.url + 'userhistory/' + user_id;
+    return this.http.get<UserHistory[]>(direccion);
   }
 }

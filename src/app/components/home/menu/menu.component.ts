@@ -1,3 +1,4 @@
+import { ApiService } from './../../../service/api.service';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -27,7 +28,7 @@ export class MenuComponent implements OnInit {
       arrow: true,
       children: [
         { name: 'secretos', icon: 'assignment', path: 'documentos' },
-        { name: 'oficiales', icon: 'notes', path: 'drag' }
+        { name: 'useronline', icon: 'notes', path: 'useronline' }
       ]
     },
     {
@@ -46,7 +47,7 @@ export class MenuComponent implements OnInit {
     }
   ]
 
-  constructor(private router: Router, private storage: LocalStorageService) { }
+  constructor(private router: Router, private storage: LocalStorageService, private api: ApiService) { }
 
   ngOnInit(): void {
   }
@@ -56,8 +57,12 @@ export class MenuComponent implements OnInit {
     console.log('click', path);
     if (path) {
       if (path == 'logout') {
+        const user_id = this.storage.retrieve('usuario').id;
         this.storage.clear();
         this.router.navigate(['']);
+        this.api.LogoutUser(user_id).subscribe((result) => {
+          console.log('Logout: ', result)
+        })
       } else
         this.router.navigate(['home/' + path]);
     }

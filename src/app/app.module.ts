@@ -1,3 +1,4 @@
+import { ModalUserHistoryComponent } from './components/modals/modal-user-history/modal-user-history.component';
 import { ModalLoginComponent } from './components/modals/modal-login/modal-login.component';
 import { ModalPermisosComponent } from './components/modals/modal-permisos/modal-permisos.component';
 import { ModalRolComponent } from './components/modals/modal-rol/modal-rol.component';
@@ -50,6 +51,7 @@ import { ToastModule } from 'ng-uikit-pro-standard';
     ModalDeleteComponent,
     ModalLoginComponent,
     ModalDocumentComponent,
+    ModalUserHistoryComponent
   ],
   imports: [
     BrowserModule,

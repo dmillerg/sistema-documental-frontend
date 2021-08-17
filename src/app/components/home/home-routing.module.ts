@@ -1,3 +1,4 @@
+import { HistoryUserComponent } from './history-user/history-user.component';
 import { DocumentListComponent } from './document-list/document-list.component';
 import { TableRolesComponent } from './tables/table-roles/table-roles.component';
 import { TableRolesPermisosComponent } from './tables/table-roles-permisos/table-roles-permisos.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: 'roles', component:TableRolesComponent},
       { path: 'roles-permisos', component:TableRolesPermisosComponent },
       { path: 'documentos', component:DocumentListComponent },
+      { path: 'useronline', component:HistoryUserComponent },
     ]
   },
 ];
