@@ -17,7 +17,7 @@ export class MenuComponent implements OnInit {
       icon: 'supervisor_account',
       arrow: true,
       children: [
-        { name: 'usuarios', icon: 'people', path: 'users' },
+        { name: 'usuarios', icon: 'person', path: 'users' },
         { name: 'roles', icon: 'account_box', path: 'roles' },
         { name: 'permisos', icon: 'perm_identity', path: 'roles-permisos' },
       ]
