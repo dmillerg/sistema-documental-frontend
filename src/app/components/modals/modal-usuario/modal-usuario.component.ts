@@ -6,6 +6,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { formatDate } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-modal-usuario',
@@ -64,7 +65,7 @@ export class ModalUsuarioComponent implements OnInit {
   rol_usuario_old: Roles[];
   // toppingList: string[] = ['usuario', 'nombre', 'fecha de registro', 'hora de registro'];
 
-  constructor(private activeModal: NgbActiveModal, private api: ApiService) {
+  constructor(private activeModal: NgbActiveModal, private api: ApiService,private toastrService: ToastService) {
     this.actiModal = this.activeModal;
   }
 
@@ -77,7 +78,7 @@ export class ModalUsuarioComponent implements OnInit {
       this.form_user_past.value.full_name = this.form_user.value.full_name;
       this.roles2.forEach(element => {
         this.form_user.value.rol_usuario.push(element);
-        
+
       });
       this.api.getAvatarUser(this.form_user.value.id).subscribe((result) => {
         this.src_avatar = result + '';
@@ -126,7 +127,10 @@ export class ModalUsuarioComponent implements OnInit {
       formData.append("roles", JSON.stringify(this.form_user.value.rol_usuario));
       this.api.AddUsuario(formData).subscribe((result) => {
         // Emitir contenido desde el modal al padre al cerrarlo
+        this.toastrService.success("Se agrego correctamente el usuario", "Mensaje");
         this.activeModal.close(this.form_user.value);
+      },(error)=>{
+        this.toastrService.error(error.error.message, "Error");
       });
     } else {
       let formData = new FormData();
@@ -146,7 +150,10 @@ export class ModalUsuarioComponent implements OnInit {
         this.api.UpdateUsuario(formData, this.form_user.value.id).subscribe((result) => {
           // location.reload(true);
           // Emitir contenido desde el modal al padre al cerrarlo
+        this.toastrService.success("Se agrego correctamente el usuario", "Mensaje");
           this.activeModal.close(this.form_user.value);
+        },(error)=>{
+          this.toastrService.error(error.error.message, "Error");
         });
       });
 

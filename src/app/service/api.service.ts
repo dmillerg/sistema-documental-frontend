@@ -306,4 +306,12 @@ export class ApiService {
     let direccion = this.url + 'userhistory/' + user_id;
     return this.http.get<UserHistory[]>(direccion);
   }
+
+  saveAccion(user_id: number = -1, accion: string) {
+    let direccion = this.url + 'userhistory/';
+    let formData = new FormData();
+    formData.append("id", user_id + '');
+    formData.append("accion", accion);
+    return this.http.post(direccion, formData);
+  }
 }

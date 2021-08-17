@@ -23,9 +23,9 @@ export class ModalUserHistoryComponent implements OnInit {
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
-  message_server: string = 'Hoalasds';
+  message_server: string = '';
   user: string = '';
-  rol: string = '';
+  rol: string = 'Historial de acciones';
   src_avatar : any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

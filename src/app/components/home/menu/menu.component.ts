@@ -56,6 +56,7 @@ export class MenuComponent implements OnInit {
   navigateTo(path) {
     console.log('click', path);
     if (path) {
+      const user_id = this.storage.retrieve('usuario').id;
       if (path == 'logout') {
         const user_id = this.storage.retrieve('usuario').id;
         this.storage.clear();
@@ -63,8 +64,11 @@ export class MenuComponent implements OnInit {
         this.api.LogoutUser(user_id).subscribe((result) => {
           console.log('Logout: ', result)
         })
-      } else
-        this.router.navigate(['home/' + path]);
+      } else {
+        this.api.saveAccion(user_id, 'Entro a la sesion ' + path).subscribe((result)=>{
+          this.router.navigate(['home/' + path]);
+        });
+      }
     }
   }
 

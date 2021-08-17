@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { formatDate } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ToastService } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-modal-document',
@@ -49,7 +50,7 @@ export class ModalDocumentComponent implements OnInit {
   estado: boolean = false;
   estado_past: boolean = false;
 
-  constructor(private activeModal: NgbActiveModal, private api: ApiService) {
+  constructor(private activeModal: NgbActiveModal, private api: ApiService, private toastrService: ToastService) {
     this.actiModal = this.activeModal;
   }
 
@@ -85,18 +86,24 @@ export class ModalDocumentComponent implements OnInit {
     formData.append("descripcion", this.form_document.value.descripcion);
     formData.append("imagen", this.form_document.value.imagen);
     formData.append("date", this.form_document.value.date);
-    formData.append("estado", this.estado+'');
+    formData.append("estado", this.estado + '');
     console.log(this.estado);
     if (this.modal_action == "Agregar") {
       this.api.AddDocument(formData).subscribe((result) => {
         // Emitir contenido desde el modal al padre al cerrarlo
         this.activeModal.close(this.form_document.value);
+        this.toastrService.success("El documento se añadio correctamente", "Mensaje");
+      },(error)=>{
+        this.toastrService.error(error.error.message, "Error");
       });
     } else {
       this.api.updateDocument(this.form_document.value.id, formData).subscribe((result) => {
         // location.reload(true);
         // Emitir contenido desde el modal al padre al cerrarlo
         this.activeModal.close(this.form_document.value);
+        this.toastrService.success("El documento se actualizo correctamente", "Mensaje");
+      },(error)=>{
+        this.toastrService.error(error.error.message, "Error");
       });
 
 
