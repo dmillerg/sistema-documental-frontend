@@ -92,7 +92,7 @@ export class DocumentListComponent implements OnInit {
   }
 
   filtroAll() {
-    this.documentos = this.documentos_reser.filter(fil => fil.title.toLowerCase().indexOf(this.filtro) !== -1);
+    this.documentos = this.documentos_reser.filter(fil => fil.title.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1);
     // console.log(this.filtro);
     // console.log(this.documentos,"*******",this.documentos_reser );
   }

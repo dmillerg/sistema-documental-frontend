@@ -49,6 +49,26 @@ mat-sidenav-container-container {
     background-size: cover;
 }
 
+.loading{
+  position: absolute;
+  top: 0;
+  margin-top: 7px;
+  width: 50px;
+  height: 50px;
+  /* margin-right: 10px; */
+  padding: 0.1px;
+}
+
+.example-loading-shade{
+  width: 50px;
+  height: 50px;
+  padding: 0.1px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 /* mat-sidenav{
   margin-top: 64px;

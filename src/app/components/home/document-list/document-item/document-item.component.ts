@@ -3,14 +3,14 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ModalDocumentComponent } from './../../../modals/modal-document/modal-document.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from './../../../../service/api.service';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-document-item',
   templateUrl: './document-item.component.html',
   styleUrls: ['./document-item.component.css']
 })
-export class DocumentItemComponent implements OnInit {
+export class DocumentItemComponent implements OnInit, AfterViewInit {
 
   @Input() id: number = -1;
   @Input() src_document: string = './../../../../../ctc.png';
@@ -20,6 +20,7 @@ export class DocumentItemComponent implements OnInit {
   @Input() estado: boolean = false;
   @Output() emisor: EventEmitter<boolean> = new EventEmitter();
   estado_text: string = 'public';
+  loading: boolean = false;
 
   constructor(private api: ApiService, private modalService: NgbModal) { }
 
@@ -30,6 +31,10 @@ export class DocumentItemComponent implements OnInit {
     }, (error) => {
       this.src_document = error.url;
     })
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => { this.finishLoading() }, 1500);
   }
 
   deleteDocument() {
@@ -49,7 +54,7 @@ export class DocumentItemComponent implements OnInit {
       id: new FormControl(this.id),
       title: new FormControl(this.title),
       descripcion: new FormControl(this.description),
-      imagen: new FormControl(this.title+'.jpg'),
+      imagen: new FormControl(this.title + '.jpg'),
       date: new FormControl(this.date),
     });
     modal.componentInstance.modalHeader = "documentos";
@@ -63,5 +68,9 @@ export class DocumentItemComponent implements OnInit {
         this.emisor.emit(true);
       }
     });
+  }
+
+  finishLoading() {
+    this.loading = true;
   }
 }

@@ -1,6 +1,6 @@
 import { LocalStorageService } from 'ngx-webstorage';
 import { ApiService } from './../../../service/api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -10,13 +10,14 @@ import { map, shareReplay } from 'rxjs/operators';
   templateUrl: './sidenav-home.component.html',
   styleUrls: ['./sidenav-home.component.css']
 })
-export class SidenavHomeComponent implements OnInit {
+export class SidenavHomeComponent implements OnInit, AfterViewInit {
 
   id_usuario: number = -1;
   user: string ='';
   rol: string = '';
   nombre: string ='';
   src_avatar;
+  loadingAvatar: boolean = false;
 
 isHandset$: Observable < boolean > = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
@@ -40,4 +41,13 @@ constructor(private breakpointObserver: BreakpointObserver, private storage: Loc
     });
   }
 
+  ngAfterViewInit(){
+    setTimeout(()=>{
+      this.finishLoading();
+    },1500);
+  }
+
+  finishLoading(){
+    this.loadingAvatar = true;
+  }
 }

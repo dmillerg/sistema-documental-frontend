@@ -1,4 +1,4 @@
-<mat-card class="bg-darkest item-document" (click)="updateDocument()">
+<mat-card class="bg-darkest item-document">
   <mat-card-header>
     <mat-icon id="icon" matTooltip="{{estado_text}}" name="icon" class="text-danger" *ngIf="estado" mat-card-avatar>
       bookmark</mat-icon>
@@ -15,8 +15,11 @@
     </mat-menu>
 
   </mat-card-header>
-  <div class="text-center">
-    <img  class="img-thumbnail" style="height: 150px;width: 100%;" [src]="src_document">
+  <div class="text-center" style="text-align: center;">
+    <div class="example-loading-shade" [hidden]="loading">
+      <mat-spinner color="warn"></mat-spinner>
+    </div>
+    <img [hidden]="!loading" id="imagen" class="img-thumbnail" style="height: 150px;width: 100%;" [src]="src_document">
   </div>
   <mat-card-content class="texto" style="font-size: small; margin-top: 10px;" matTooltip="{{description}}">
     {{description}}

@@ -25,3 +25,13 @@
   transition: 500ms;
 }
 
+
+.example-loading-shade{
+  top: 20;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

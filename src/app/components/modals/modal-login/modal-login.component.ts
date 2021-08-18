@@ -67,4 +67,8 @@ export class ModalLoginComponent implements OnInit {
     this.router.navigate(['home/']);
   }
 
+  keyPress(event: KeyboardEvent){
+    console.log(event);
+  }
+
 }
