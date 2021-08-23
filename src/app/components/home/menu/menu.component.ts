@@ -1,3 +1,4 @@
+import { ApiService } from './../../../service/api.service';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +17,7 @@ export class MenuComponent implements OnInit {
       icon: 'supervisor_account',
       arrow: true,
       children: [
-        { name: 'usuarios', icon: 'people', path: 'users' },
+        { name: 'usuarios', icon: 'person', path: 'users' },
         { name: 'roles', icon: 'account_box', path: 'roles' },
         { name: 'permisos', icon: 'perm_identity', path: 'roles-permisos' },
       ]
@@ -27,7 +28,7 @@ export class MenuComponent implements OnInit {
       arrow: true,
       children: [
         { name: 'secretos', icon: 'assignment', path: 'documentos' },
-        { name: 'oficiales', icon: 'notes', path: 'drag' }
+        { name: 'useronline', icon: 'notes', path: 'useronline' }
       ]
     },
     {
@@ -46,7 +47,7 @@ export class MenuComponent implements OnInit {
     }
   ]
 
-  constructor(private router: Router, private storage: LocalStorageService) { }
+  constructor(private router: Router, private storage: LocalStorageService, private api: ApiService) { }
 
   ngOnInit(): void {
   }
@@ -55,11 +56,22 @@ export class MenuComponent implements OnInit {
   navigateTo(path) {
     console.log('click', path);
     if (path) {
+      const user_id = this.storage.retrieve('usuario').id;
       if (path == 'logout') {
+        const user_id = this.storage.retrieve('usuario').id;
         this.storage.clear();
         this.router.navigate(['']);
-      } else
-        this.router.navigate(['home/' + path]);
+        this.api.LogoutUser(user_id).subscribe((result) => {
+          console.log('Logout: ', result)
+        })
+      } else {
+        this.api.saveAccion(user_id, 'Entro a la sesion ' + path).subscribe((result)=>{
+          this.router.navigate(['home/' + path]);
+        },(err)=>{
+          console.log(err);
+          this.router.navigate(['home/' + path]);
+        });
+      }
     }
   }
 
