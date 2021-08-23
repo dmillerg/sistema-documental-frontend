@@ -1,0 +1,73 @@
+<div class="full-container bg-dark">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-grid-list cols="4" rowHeight="100px">
+                <mat-grid-tile [colspan]="2" [rowspan]="3" class="bg-dark">
+                    <mat-card class="bg-darkest" style="width: 100%;margin-inline: 10px;">
+                        <mat-card-header>
+                            <mat-card-title style="font-size: medium;color: #f44336;">Datos del usuario</mat-card-title>
+                            <mat-card-subtitle style="font-size: xx-small; color: white;">usuario actual</mat-card-subtitle>
+                        </mat-card-header>
+                        <div>
+                            <img class="img-thumbnail rounded-circle" style="height: 150px;width: 150px;box-shadow: 2px 2px 2px 2px rgba(0, 0, 0.2, 0);">
+                        </div>
+                        <mat-card-content class="texto" style="font-size: small; margin-top: 10px;">
+
+                        </mat-card-content>
+                        <mat-card-actions align="start">
+                            <!-- <button mat-button >Action1</button> -->
+                        </mat-card-actions>
+                    </mat-card>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="3" class="bg-dark">
+                    <mat-card class="bg-darkest" style="width: 100%;margin-inline: 10px;">
+                        <mat-card-header>
+                            <mat-card-title style="font-size: medium;color: #f44336;">Permisos del usuario</mat-card-title>
+                            <mat-card-subtitle style="font-size: xx-small; color: white;">usuario actual</mat-card-subtitle>
+                        </mat-card-header>
+                        <div>
+                            <mat-selection-list #shoes [multiple]="false" style="overflow-y: auto; height: 150px;">
+                                <mat-list-option>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <mat-icon class="mat-18" style="color: white;">all_inclusive</mat-icon>
+                                        </div>
+                                        <div class="col-md-8" style="color: white;">
+                                            <label>Hola</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <mat-icon class="mat-18 text-success">check</mat-icon>
+                                        </div>
+                                    </div>
+                                </mat-list-option>
+                            </mat-selection-list>
+                        </div>
+                        <mat-card-content class="texto" style="font-size: small; margin-top: 10px;">
+
+                        </mat-card-content>
+                        <mat-card-actions align="start">
+                            <!-- <button mat-button >Action1</button> -->
+                        </mat-card-actions>
+                    </mat-card>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="4" [rowspan]="3" class="bg-dark">
+                    <mat-card class="bg-darkest" style="width: 100%;margin-inline: 10px;">
+                        <mat-card-header>
+                            <mat-card-title style="font-size: medium;color: #f44336;">Historial del usuario</mat-card-title>
+                            <mat-card-subtitle style="font-size: xx-small; color: white;">usuario actual</mat-card-subtitle>
+                        </mat-card-header>
+                        <div>
+                            <img class="img-thumbnail rounded-circle" style="height: 150px;width: 150px;">
+                        </div>
+                        <mat-card-content class="texto" style="font-size: small; margin-top: 10px;">
+
+                        </mat-card-content>
+                        <mat-card-actions align="start">
+                            <!-- <button mat-button >Action1</button> -->
+                        </mat-card-actions>
+                    </mat-card>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+    </div>
+</div>

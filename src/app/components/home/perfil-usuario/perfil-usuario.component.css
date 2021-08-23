@@ -1,0 +1,9 @@
+.full-container {
+    padding-top: 25px;
+    padding-inline: 20px;
+}
+
+.bg-darkest {
+    background-color: rgba(37, 37, 37);
+    color: whitesmoke;
+}

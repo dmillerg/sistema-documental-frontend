@@ -1,3 +1,4 @@
+import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { HistoryUserComponent } from './history-user/history-user.component';
 import { TableRolesComponent } from './tables/table-roles/table-roles.component';
 import { TableRolesPermisosComponent } from './tables/table-roles-permisos/table-roles-permisos.component';
@@ -50,6 +51,7 @@ import { DocumentItemComponent } from './document-list/document-item/document-it
     DocumentListComponent,
     DocumentItemComponent,
     HistoryUserComponent,
+    PerfilUsuarioComponent
   ],
   imports: [
     CommonModule,

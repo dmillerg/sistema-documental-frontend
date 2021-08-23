@@ -314,4 +314,13 @@ export class ApiService {
     formData.append("accion", accion);
     return this.http.post(direccion, formData);
   }
+
+  getRolByRolName(rol_name: string): Observable<Roles[]>{
+    let direccion = this.url + 'rolbyrolname/';
+    const headers = { 'content-type': 'application/json' };
+    let body = {
+      'rolname': rol_name,
+    }
+    return this.http.get<Roles[]>(direccion, { 'headers': headers, params: body });
+  }
 }
