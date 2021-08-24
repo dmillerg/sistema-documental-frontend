@@ -13,7 +13,7 @@
 
 .rotated {
     animation-name: rotation;
-    animation-duration: 1500ms;
+    animation-duration: 3s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
@@ -27,7 +27,23 @@
     }
 }
 
-.rotated-inverse {
+.rotated-faster {
+    animation-name: rotation;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+.rotated-fasterfaster {
     animation-name: rotation;
     animation-duration: 500ms;
     animation-iteration-count: infinite;
@@ -44,6 +60,6 @@
 }
 
 .bg-darkest {
-    background-color: rgba(37, 37, 37);
+    background-color: rgb(17, 17, 17);
     color: whitesmoke;
 }
