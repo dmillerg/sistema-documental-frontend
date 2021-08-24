@@ -172,11 +172,11 @@ mat-label {
 }
 
 .cont {
-    height: 290px;
+    padding: 20px;
     transition: 500ms;
 }
 
 .cont:hover {
-    height: 300px;
+    padding: 30px;
     transition: 500ms;
 }

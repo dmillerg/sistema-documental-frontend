@@ -1,3 +1,4 @@
+import { NgxLoadingModule } from 'ngx-loading';
 import { ModalUserHistoryComponent } from './components/modals/modal-user-history/modal-user-history.component';
 import { ModalLoginComponent } from './components/modals/modal-login/modal-login.component';
 import { ModalPermisosComponent } from './components/modals/modal-permisos/modal-permisos.component';
@@ -32,14 +33,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ModalUsuarioComponent } from './components/modals/modal-usuario/modal-usuario.component';
 import { MatStepperModule } from '@angular/material/stepper';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatBadgeModule } from '@angular/material/badge';
 import { ModalDeleteComponent } from './components/modals/modal-delete/modal-delete.component';
 import { ModalDocumentComponent } from './components/modals/modal-document/modal-document.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { ToastrModule } from 'ngx-toastr';
 import { ToastModule } from 'ng-uikit-pro-standard';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -81,13 +83,15 @@ import { ToastModule } from 'ng-uikit-pro-standard';
     MatCheckboxModule,
     HttpClientModule,
     MatStepperModule,
+    MatProgressSpinnerModule,
     NgxWebstorageModule.forRoot(),
     MaterialFileInputModule,
     ToastrModule.forRoot(),
     ToastModule.forRoot(),
+    NgxLoadingModule.forRoot({}),
   ],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy},
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
 
   bootstrap: [AppComponent]

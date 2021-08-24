@@ -1,3 +1,5 @@
-<!-- <app-usuarios></app-usuarios> -->
-<!-- <app-history-user></app-history-user> -->
-<router-outlet></router-outlet>
+<router-outlet *ngIf="!loading"></router-outlet>
+<div class="example-loading-shade bg-darkest" *ngIf="loading">
+    <img src="raya.jpg" style="position: absolute; width: 150px;height: 150px; box-shadow: 1px 1px 1px 1px #f44336;" class="rotated bg-darkest rounded-circle">
+    <img src="raya.jpg" style="position: relative;width: 120px;height: 120px; box-shadow: 2px 2px 2px 2px white;rotate: 180deg;" class="rotated-inverse bg-darkest rounded-circle">
+</div>

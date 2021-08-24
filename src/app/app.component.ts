@@ -1,4 +1,4 @@
-import { Component, ViewChild, TemplateRef} from '@angular/core';
+import { Component, ViewChild, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,11 +6,14 @@ import { Component, ViewChild, TemplateRef} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   title = 'Sistema';
+  public loading = true;
 
-  constructor(){
-
+  constructor() {
+    setTimeout(() => {                           // <<<---using ()=> syntax
+      this.loading = false;
+    }, 10000);
   }
-
 
 }
