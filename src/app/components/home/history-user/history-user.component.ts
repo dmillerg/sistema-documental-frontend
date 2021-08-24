@@ -21,6 +21,9 @@ export class HistoryUserComponent implements OnInit, OnDestroy {
   isRateLimitReached = false;
   message_server: string = 'Hoalasds';
   interval: any;
+  title: string = 'Historial';
+  icon: string = 'event_note';
+  subtitle: string = 'Muestra el historial de todos los usuarios';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

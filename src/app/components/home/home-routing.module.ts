@@ -22,6 +22,7 @@ const routes: Routes = [
       { path: 'roles-permisos', component:TableRolesPermisosComponent },
       { path: 'documentos', component:DocumentListComponent },
       { path: 'perfil', component:PerfilUsuarioComponent },
+      { path: 'historial', component:HistoryUserComponent },
     ]
   },
 ];

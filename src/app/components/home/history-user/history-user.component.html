@@ -1,4 +1,8 @@
 <div class="full-container bg-dark">
+
+    <app-top-bar [modal_header]="title" [modal_icon]="icon" [modal_subheader]="subtitle" [withAddButton]="false">
+    </app-top-bar>
+
     <div class="example-container mat-elevation-z4 bg-dark">
         <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
             <mat-spinner *ngIf="isLoadingResults" color="warn"></mat-spinner>

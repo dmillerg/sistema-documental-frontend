@@ -3,13 +3,27 @@
         <div class="col-md-12">
             <mat-grid-list cols="4" rowHeight="100px">
                 <mat-grid-tile [colspan]="2" [rowspan]="3" class="bg-dark">
-                    <mat-card class="bg-darkest" style="width: 100%;margin-inline: 10px;">
+                    <mat-card class="bg-darkest cont" style="width: 100%;margin-inline: 10px;">
                         <mat-card-header>
                             <mat-card-title style="font-size: medium;color: #f44336;">Datos del usuario</mat-card-title>
                             <mat-card-subtitle style="font-size: xx-small; color: white;">usuario actual</mat-card-subtitle>
                         </mat-card-header>
-                        <div>
-                            <img class="img-thumbnail rounded-circle" style="height: 150px;width: 150px;box-shadow: 2px 2px 2px 2px rgba(0, 0, 0.2, 0);">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <img class="img-thumbnail rounded-circle" [src]="urlImage" style="height: 150px;width: 150px;box-shadow: 2px 2px 2px 2px rgba(0, 0, 0.2, 0);">
+                            </div>
+                            <div class="col-md-7" style="display: flex;flex-direction: column; vertical-align: middle;">
+                                <div>
+                                    <mat-icon color="warn">person</mat-icon> Usuario: {{usuario}}</div>
+                                <div>
+                                    <mat-icon color="warn">text_fields</mat-icon> Nombre: {{nombre}}</div>
+                                <div>
+                                    <mat-icon color="warn">date_range</mat-icon> Fecha de registro: {{register_date}}</div>
+                                <div>
+                                    <mat-icon color="warn">hourglass_empty</mat-icon> Hora de registro: {{register_hour}}</div>
+                                <div>
+                                    <mat-icon color="warn">verified_user</mat-icon> Rol: {{rol_name}}</div>
+                            </div>
                         </div>
                         <mat-card-content class="texto" style="font-size: small; margin-top: 10px;">
 
@@ -20,23 +34,24 @@
                     </mat-card>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="2" [rowspan]="3" class="bg-dark">
-                    <mat-card class="bg-darkest" style="width: 100%;margin-inline: 10px;">
+                    <mat-card class="bg-darkest cont" style="width: 100%;margin-inline: 10px;">
                         <mat-card-header>
                             <mat-card-title style="font-size: medium;color: #f44336;">Permisos del usuario</mat-card-title>
                             <mat-card-subtitle style="font-size: xx-small; color: white;">usuario actual</mat-card-subtitle>
                         </mat-card-header>
                         <div>
                             <mat-selection-list #shoes [multiple]="false" style="overflow-y: auto; height: 150px;">
-                                <mat-list-option>
+                                <mat-list-option *ngFor="let permiso of permisos" style="font-size: small;scrollbar-width: none;height: 25px;">
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <mat-icon class="mat-18" style="color: white;">all_inclusive</mat-icon>
+                                            <mat-icon color="warn" class="mat-18">{{permiso.icon}}</mat-icon>
                                         </div>
                                         <div class="col-md-8" style="color: white;">
-                                            <label>Hola</label>
+                                            <label>{{permiso.name}}</label>
                                         </div>
                                         <div class="col-md-2">
-                                            <mat-icon class="mat-18 text-success">check</mat-icon>
+                                            <mat-icon class="mat-18 text-success" *ngIf="permiso.granted">check</mat-icon>
+                                            <mat-icon class="mat-18 text-danger" *ngIf="!permiso.granted">close</mat-icon>
                                         </div>
                                     </div>
                                 </mat-list-option>
@@ -51,16 +66,61 @@
                     </mat-card>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="4" [rowspan]="3" class="bg-dark">
-                    <mat-card class="bg-darkest" style="width: 100%;margin-inline: 10px;">
+                    <mat-card class="bg-darkest cont" style="width: 100%;margin-inline: 10px;">
                         <mat-card-header>
                             <mat-card-title style="font-size: medium;color: #f44336;">Historial del usuario</mat-card-title>
                             <mat-card-subtitle style="font-size: xx-small; color: white;">usuario actual</mat-card-subtitle>
                         </mat-card-header>
-                        <div>
-                            <img class="img-thumbnail rounded-circle" style="height: 150px;width: 150px;">
-                        </div>
                         <mat-card-content class="texto" style="font-size: small; margin-top: 10px;">
+                            <div class="full-containers">
+                                <div class="example-container mat-elevation-z0 bg-dark">
+                                    <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+                                        <mat-spinner *ngIf="isLoadingResults" color="warn"></mat-spinner>
+                                        <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+                                            {{message_server}}
+                                        </div>
+                                    </div>
+                                    <div class="example-container">
+                                        <div class="example-table-container">
+                                            <table mat-table [dataSource]="dataSource" class="example-table" matSortActive="created" matSortDisableClear matSortDirection="desc" matSort>
+                                                <!-- id Column -->
+                                                <ng-container matColumnDef="id">
+                                                    <th class="bg-darkest" mat-header-cell mat-sort-header="id" *matHeaderCellDef>id</th>
+                                                    <td class="bg-dark" mat-cell *matCellDef="let row">{{row.id}}</td>
+                                                </ng-container>
 
+                                                <!-- user column -->
+                                                <ng-container matColumnDef="user">
+                                                    <th class="bg-darkest" mat-header-cell mat-sort-header="user" *matHeaderCellDef>Usuario</th>
+                                                    <td class="bg-dark" mat-cell *matCellDef="let row">
+                                                        {{row.usuario}}</td>
+                                                </ng-container>
+
+                                                <!--accion column -->
+                                                <ng-container matColumnDef="accion">
+                                                    <th class="bg-darkest" mat-header-cell mat-sort-header="accion" *matHeaderCellDef>Accion</th>
+                                                    <td class="bg-dark" mat-cell *matCellDef="let row">
+                                                        {{row.accion}}</td>
+                                                </ng-container>
+
+                                                <!-- fecha Column -->
+                                                <ng-container matColumnDef="fecha">
+                                                    <th class="bg-darkest" mat-header-cell *matHeaderCellDef>Fecha</th>
+                                                    <td class="bg-dark" mat-cell *matCellDef="let row">
+                                                        {{row.fecha}}</td>
+                                                </ng-container>
+
+                                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                            </table>
+                                        </div>
+
+                                        <mat-paginator class="bg-darkest" [length]="resultsLength" [pageSize]="7" [pageSizeOptions]="[5, 7, 15, 20, 30]">
+                                        </mat-paginator>
+
+                                    </div>
+                                </div>
+                            </div>
                         </mat-card-content>
                         <mat-card-actions align="start">
                             <!-- <button mat-button >Action1</button> -->

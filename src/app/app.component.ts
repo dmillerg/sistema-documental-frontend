@@ -7,4 +7,10 @@ import { Component, ViewChild, TemplateRef} from '@angular/core';
 })
 export class AppComponent {
   title = 'Sistema';
+
+  constructor(){
+
+  }
+
+
 }

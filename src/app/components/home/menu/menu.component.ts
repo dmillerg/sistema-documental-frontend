@@ -13,6 +13,14 @@ export class MenuComponent implements OnInit {
   panelOpenState = true;
   menu = [
     {
+      name: 'Perfil',
+      icon: 'contact_mail',
+      arrow: true,
+      children: [
+        { name: 'Perfil', icon: 'contact_mail', path: 'perfil' },
+      ]
+    },
+    {
       name: 'Administracion',
       icon: 'supervisor_account',
       arrow: true,
@@ -20,6 +28,7 @@ export class MenuComponent implements OnInit {
         { name: 'usuarios', icon: 'person', path: 'users' },
         { name: 'roles', icon: 'account_box', path: 'roles' },
         { name: 'permisos', icon: 'perm_identity', path: 'roles-permisos' },
+        { name: 'historial', icon: 'event_note', path: 'historial' },
       ]
     },
     {
@@ -65,9 +74,9 @@ export class MenuComponent implements OnInit {
           console.log('Logout: ', result)
         })
       } else {
-        this.api.saveAccion(user_id, 'Entro a la sesion ' + path).subscribe((result)=>{
+        this.api.saveAccion(user_id, 'Entro a la sesion ' + path).subscribe((result) => {
           this.router.navigate(['home/' + path]);
-        },(err)=>{
+        }, (err) => {
           console.log(err);
           this.router.navigate(['home/' + path]);
         });
