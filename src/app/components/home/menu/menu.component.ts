@@ -1,5 +1,5 @@
 import { ApiService } from './../../../service/api.service';
-import { LocalStorageService } from 'ngx-webstorage';
+import { SessionStorageService } from 'ngx-webstorage';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,54 +11,65 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
 
   panelOpenState = true;
-  menu = [
-    {
-      name: 'Perfil',
-      icon: 'contact_mail',
-      arrow: true,
-      children: [
-        { name: 'Perfil', icon: 'contact_mail', path: 'perfil' },
-      ]
-    },
-    {
-      name: 'Administracion',
-      icon: 'supervisor_account',
-      arrow: true,
-      children: [
-        { name: 'usuarios', icon: 'person', path: 'users' },
-        { name: 'roles', icon: 'account_box', path: 'roles' },
-        { name: 'permisos', icon: 'perm_identity', path: 'roles-permisos' },
-        { name: 'historial', icon: 'event_note', path: 'historial' },
-      ]
-    },
-    {
-      name: 'Documentos',
-      icon: 'books',
-      arrow: true,
-      children: [
-        { name: 'secretos', icon: 'assignment', path: 'documentos' },
-        { name: 'perfil', icon: 'notes', path: 'perfil' }
-      ]
-    },
-    {
-      name: 'Configuracion',
-      icon: 'settings',
-      arrow: true,
-      children: [
-        { name: 'preferencias', icon: 'build', path: 'menu' },
-        { name: 'conexxion', icon: 'network_cell', path: 'top' }
-      ]
-    },
-    {
-      name: 'Logout',
-      icon: 'exit_to_app',
-      path: 'logout'
-    }
-  ]
+  menu: any[] = []
 
-  constructor(private router: Router, private storage: LocalStorageService, private api: ApiService) { }
+  constructor(private router: Router, private storage: SessionStorageService, private api: ApiService) { }
 
   ngOnInit(): void {
+    try {
+      const user = this.storage.retrieve('usuario');
+      this.menu = [
+        {
+          name: 'Perfil',
+          icon: 'contact_mail',
+          arrow: true,
+          permit: true,
+          children: [
+            { name: 'Perfil', icon: 'contact_mail', path: 'perfil' },
+          ]
+        },
+        {
+          name: 'Administracion',
+          icon: 'supervisor_account',
+          arrow: true,
+          permit: user.is_all == 1,
+          children: [
+            { name: 'usuarios', icon: 'person', path: 'users', permit: user.is_all == 1, },
+            { name: 'roles', icon: 'account_box', path: 'roles', permit: user.is_all == 1, },
+            { name: 'permisos', icon: 'perm_identity', path: 'roles-permisos', permit: user.is_all == 1, },
+            { name: 'historial', icon: 'event_note', path: 'historial', permit: user.is_all == 1, },
+          ]
+        },
+        {
+          name: 'Documentos',
+          icon: 'books',
+          arrow: true,
+          permit: user.is_read == 1,
+          children: [
+            { name: 'privados', icon: 'assignment', path: 'documentos', permit: user.is_read == 1, },
+          ]
+        },
+        // {
+        //   name: 'Configuracion',
+        //   icon: 'settings',
+        //   arrow: true,
+        //   permit: true,
+        //   children: [
+        //     { name: 'preferencias', icon: 'build', path: 'menu', permit: true, },
+        //     { name: 'conexxion', icon: 'network_cell', path: 'top', permit: true, }
+        //   ]
+        // },
+        {
+          name: 'Logout',
+          icon: 'exit_to_app',
+          path: 'logout',
+          permit: true,
+        }
+      ]
+    } catch (e) {
+      console.log('Error', e);
+      this.router.navigate(['/login']);
+    }
   }
 
   /**click sobre uno de los children */

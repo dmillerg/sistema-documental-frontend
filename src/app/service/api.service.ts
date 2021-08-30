@@ -323,4 +323,9 @@ export class ApiService {
     }
     return this.http.get<Roles[]>(direccion, { 'headers': headers, params: body });
   }
+
+  getApis(){
+    let direccion = 'http://172.40.7.170:3000/api';
+    return this.http.get(direccion);
+  }
 }

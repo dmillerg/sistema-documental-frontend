@@ -9,13 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private storage: LocalStorageService, private router: Router) { }
+  constructor(private storage: LocalStorageService, private router: Router) {
+    try {
+      const user = this.storage.retrieve('usuario');
+    } catch (e) {
+      this.router.navigate(['/login']);
+    }
+  }
 
   ngOnInit(): void {
-    const user = this.storage.retrieve('usuario');
-    if(user == undefined){
-      this.router.navigate(['/']);
-    }
+
   }
 
 }

@@ -1,5 +1,5 @@
 <mat-accordion *ngFor="let item of menu" multi>
-    <mat-expansion-panel class="mat-elevation-z0 borde-left-warn" hideToggle (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel class="mat-elevation-z0 borde-left-warn" hideToggle (opened)="panelOpenState = true" (closed)="panelOpenState = false" [hidden]="!item.permit">
         <mat-expansion-panel-header (click)="navigateTo(item.path)">
             <mat-panel-title class="menu-item" routerLinkActive="mat-icon-active">
                 <mat-icon class="font-title-menu" mat-list-icon>{{item.icon}}</mat-icon>

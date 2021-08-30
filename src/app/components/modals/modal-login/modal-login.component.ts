@@ -1,8 +1,8 @@
-import { LocalStorageService } from 'ngx-webstorage';
+import { SessionStorageService } from 'ngx-webstorage';
 import { Router } from '@angular/router';
 import { ApiService } from './../../../service/api.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ToastService } from 'ng-uikit-pro-standard';
 
@@ -11,7 +11,7 @@ import { ToastService } from 'ng-uikit-pro-standard';
   templateUrl: './modal-login.component.html',
   styleUrls: ['./modal-login.component.css']
 })
-export class ModalLoginComponent implements OnInit {
+export class ModalLoginComponent implements OnInit, OnDestroy {
   actiModal: NgbActiveModal;
   user: string;
   password: string;
@@ -22,8 +22,11 @@ export class ModalLoginComponent implements OnInit {
   login;
   ok: boolean = true;
 
-  constructor(private activeModal: NgbActiveModal, private api: ApiService, private router: Router, private storage: LocalStorageService,private toastr: ToastrService,private toastrService: ToastService) {
+  constructor(private activeModal: NgbActiveModal, private api: ApiService, private router: Router, private storage: SessionStorageService,private toastr: ToastrService,private toastrService: ToastService) {
     this.actiModal = this.activeModal;
+  }
+  ngOnDestroy(): void {
+    this.actiModal.close(false);
   }
 
   ngOnInit() {

@@ -1,7 +1,7 @@
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { ApiService } from './../../../service/api.service';
-import { LocalStorageService } from 'ngx-webstorage';
+import { SessionStorageService } from 'ngx-webstorage';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserHistory } from 'src/app/models/userhistory';
@@ -15,7 +15,7 @@ import { UserHistory } from 'src/app/models/userhistory';
 
 export class PerfilUsuarioComponent implements OnInit {
 
-  constructor(private storage: LocalStorageService, private api: ApiService) { }
+  constructor(private storage: SessionStorageService, private api: ApiService) { }
 
   displayedColumns: string[] = ['id', 'user', 'accion', 'fecha'];
   dataSource: MatTableDataSource<UserHistory>;
