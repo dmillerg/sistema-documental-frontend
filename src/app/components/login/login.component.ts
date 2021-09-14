@@ -1,3 +1,4 @@
+import { ElectronService } from './../../service/electron.service';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from './../../service/api.service';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
@@ -26,7 +27,7 @@ export class LoginComponent implements AfterViewInit {
   login;
   ok: boolean = true;
 
-  constructor(private router: Router, private modalService: NgbModal, private api: ApiService,private storage: SessionStorageService,private toastr: ToastrService,private toastrService: ToastService) { }
+  constructor(private router: Router, private modalService: NgbModal, private api: ApiService,private storage: SessionStorageService,private toastr: ToastrService,private toastrService: ToastService, private ipc: ElectronService) { }
 
    ngAfterViewInit(): void {
   }
@@ -72,4 +73,10 @@ export class LoginComponent implements AfterViewInit {
   keyPress(event: KeyboardEvent){
     console.log(event);
   }
+
+  salirApp(){
+
+    this.ipc.send("window-close");
+  }
+
 }

@@ -15,7 +15,7 @@ import { UserHistory } from '../models/userhistory';
 })
 export class ApiService {
 
-  url: string = "http://172.40.7.170:3000/apis/";
+  url: string = "http://localhost:3000/apis/";
 
   constructor(private http: HttpClient) { }
 
@@ -193,13 +193,13 @@ export class ApiService {
    * @returns
    */
   LoginUser(user: string, pass: string): Observable<Login> {
-    let direccion = this.url + '/login';
+    let direccion = this.url + 'login';
     let body = { "user": user, "pass": pass };
     return this.http.post<Login>(direccion, body);
   }
 
   LogoutUser(user_id: number = -1) {
-    let direccion = this.url + '/logout/' + user_id;
+    let direccion = this.url + 'logout/' + user_id;
     return this.http.delete(direccion);
   }
 

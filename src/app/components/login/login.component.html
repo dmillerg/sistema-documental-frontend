@@ -1,28 +1,35 @@
+<div class="background">
+    <p>asdasda</p>
+</div>
 <div class="example-loading-shade">
-
-    <div class="col-md-2 bg-darkest login-container">
-        <div style="text-align: center;margin-block-start: 1%;">
-            <img mat-card-image src="ctc.png" style="width: 70px;height: 70px;padding: 5px;" class=" rounded-circle">
-            <h2 class="modal-title">Bienvenido al Sistema Documental de la CTC</h2>
+    <div class="contenedores">
+        <div class=" text-center" style="background-color: rgb(150, 54, 54);border-radius: 10px;">
+            <h2 style="color: white;padding: 40px;padding-top: 50px;">Bienvenido al Sistema Documental de la CTC</h2>
         </div>
-        <form>
-            <div class="contenedor">
+
+        <form class="form">
+            <div class="inputs-container">
                 <mat-hint *ngIf="message_error" style="color: brown;">usuario o contraseña incorrecta</mat-hint>
                 <mat-form-field appearance="outline" color="warn" style="margin-bottom: -25px;">
-                    <input matInput type="text" placeholder="usuario" name="user" [(ngModel)]="user" (ngModelChange)="validar()">
+                    <input matInput type="text" placeholder="usuario" name="user" [(ngModel)]="user" (ngModelChange)="validar()" style="color: white;">
                     <mat-icon matSuffix>person</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" color="warn">
-                    <input matInput type="password" placeholder="contraseña" name="password" [(ngModel)]="password">
+                    <input matInput type="password" placeholder="contraseña" name="password" [(ngModel)]="password" style="color: white;">
                     <mat-icon matSuffix>vpn_key</mat-icon>
                 </mat-form-field>
-
+                <div class="text-center" style="margin-bottom: 30px;">
+                    <button id="accept" class="auth" data-dismiss="modal" (click)="onSubmit()"><mat-icon *ngIf="!ok">check</mat-icon></button>
+                </div>
             </div>
         </form>
-        <div class="text-center" style="margin-bottom: 30px;">
-            <button id="accept" class="auth" data-dismiss="modal" (click)="onSubmit()"><mat-icon *ngIf="!ok">check</mat-icon></button>
-        </div>
     </div>
 
+</div>
+<div class="icono">
+    <img mat-card-image src="ctc.png" style="width: 100px;height: 100px;padding: 5px;background-color: rgb(150, 54, 54);" class=" rounded-circle">
+</div>
+<div style="position: absolute; top: 0;right: 0; margin: 5px;">
+    <button mat-mini-fab color="warn" aria-label="Cerrar" (click)="salirApp()"><mat-icon>close</mat-icon></button>
 </div>
