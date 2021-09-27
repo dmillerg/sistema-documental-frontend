@@ -1,3 +1,5 @@
+import { MatMenuModule } from '@angular/material/menu';
+import { DocumentoLimitadoItemComponent } from './components/home/documentos/documento-limitado/documento-limitado-item/documento-limitado-item.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { ModalUserHistoryComponent } from './components/modals/modal-user-history/modal-user-history.component';
 import { ModalLoginComponent } from './components/modals/modal-login/modal-login.component';
@@ -93,6 +95,7 @@ import { WaveComponent } from './components/wave/wave.component';
     ToastrModule.forRoot(),
     ToastModule.forRoot(),
     NgxLoadingModule.forRoot({}),
+    MatMenuModule,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
