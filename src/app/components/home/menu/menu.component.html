@@ -13,11 +13,16 @@
             <div>
                 <ng-container *ngFor="let hijo of item.children">
                     <ng-container>
-                        <mat-list-item routerLinkActive="mat-icon-active" style="margin-left: -20px;font-size: 14px;margin-top: -15px;">
-                            <mat-subheader class="menu-item" mat-list-item (click)="navigateTo(hijo.path)" mat-line>
-                                <mat-icon mat-list-icon style="margin-left: 10px;font-size: 15px;">{{hijo.icon}}</mat-icon>
-                                <span style="margin-left: 3px;">{{hijo.name}}</span>
-                            </mat-subheader>
+                        <mat-list-item routerLinkActive="mat-icon-active" style="margin-left: -20px;font-size: 14px;margin-top: -15px">
+                            <div class="container">
+                                <div class="row">
+                                    <div style="background-color: #ff5722;width: 2px;" *ngIf="active == hijo.path"></div>
+                                    <mat-subheader class="menu-item" mat-list-item (click)="navigateTo(hijo.path)" mat-line>
+                                        <mat-icon mat-list-icon style="margin-left: 10px;font-size: 15px;">{{hijo.icon}}</mat-icon>
+                                        <span style="margin-left: 3px;">{{hijo.name}}</span>
+                                    </mat-subheader>
+                                </div>
+                            </div>
                         </mat-list-item>
                     </ng-container>
                 </ng-container>

@@ -307,6 +307,12 @@ export class ApiService {
     return this.http.get<UserHistory[]>(direccion);
   }
 
+  /**
+   * Salvar cada accion del usuario actual
+   * @param user_id
+   * @param accion
+   * @returns
+   */
   saveAccion(user_id: number = -1, accion: string) {
     let direccion = this.url + 'userhistory/';
     let formData = new FormData();
@@ -315,6 +321,11 @@ export class ApiService {
     return this.http.post(direccion, formData);
   }
 
+  /**
+   * Obtener Rol by el rol_name
+   * @param rol_name
+   * @returns
+   */
   getRolByRolName(rol_name: string): Observable<Roles[]>{
     let direccion = this.url + 'rolbyrolname/';
     const headers = { 'content-type': 'application/json' };
@@ -324,8 +335,27 @@ export class ApiService {
     return this.http.get<Roles[]>(direccion, { 'headers': headers, params: body });
   }
 
+  /**
+   * Obtener todas las apis
+   * @returns
+   */
   getApis(){
     let direccion = 'http://172.40.7.170:3000/api';
     return this.http.get(direccion);
+  }
+
+  /**
+   * Crear superUsuario
+   * @param user
+   * @param pass
+   * @returns
+   */
+  createSuperUser(user, pass, confirm){
+    let direccion = this.url + 'superuser/';
+    let formData = new FormData();
+    formData.append("user", user);
+    formData.append("pass", pass);
+    formData.append("confirm", confirm);
+    return this.http.post(direccion, formData);
   }
 }

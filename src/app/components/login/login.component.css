@@ -91,3 +91,21 @@
     align-items: center;
     background-color: rgba(17, 17, 17, 0.61);
 }
+
+input::placeholder {
+    color: #d4352f;
+}
+
+.activated-super:hover {
+    width: 120px;
+    height: 120px;
+    transition: 200ms;
+}
+
+.img {
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    background-color: rgb(150, 54, 54);
+    /* filter: hue-rotate(270deg); */
+}

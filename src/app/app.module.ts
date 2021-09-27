@@ -42,6 +42,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { ToastrModule } from 'ngx-toastr';
 import { ToastModule } from 'ng-uikit-pro-standard';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SuperuserComponent } from './components/superuser/superuser.component';
+import { WaveComponent } from './components/wave/wave.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ModalDeleteComponent,
     ModalLoginComponent,
     ModalDocumentComponent,
-    ModalUserHistoryComponent
+    ModalUserHistoryComponent,
+    SuperuserComponent,
+    WaveComponent,
   ],
   imports: [
     BrowserModule,

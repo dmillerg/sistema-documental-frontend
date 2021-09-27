@@ -12,6 +12,7 @@ export class MenuComponent implements OnInit {
 
   panelOpenState = true;
   menu: any[] = []
+  active: string = '';
 
   constructor(private router: Router, private storage: SessionStorageService, private api: ApiService) { }
 
@@ -46,7 +47,11 @@ export class MenuComponent implements OnInit {
           arrow: true,
           permit: user.is_read == 1,
           children: [
-            { name: 'privados', icon: 'assignment', path: 'documentos', permit: user.is_read == 1, },
+            { name: 'limitados', icon: 'assignment', path: 'documentos-limitados', permit: user.is_read == 1, },
+            { name: 'secretos', icon: 'key', path: 'documentos', permit: user.is_read == 1, },
+            { name: 'ordinarios personales', icon: 'assignment', path: 'documentos', permit: user.is_read == 1, },
+            { name: 'clasificados', icon: 'assignment', path: 'documentos', permit: user.is_read == 1, },
+            { name: 'ordinarios', icon: 'assignment', path: 'documentos', permit: user.is_read == 1, },
           ]
         },
         // {
@@ -75,6 +80,7 @@ export class MenuComponent implements OnInit {
   /**click sobre uno de los children */
   navigateTo(path) {
     console.log('click', path);
+    if(path != undefined)  this.active = path;
     if (path) {
       const user_id = this.storage.retrieve('usuario').id;
       if (path == 'logout') {
@@ -82,7 +88,7 @@ export class MenuComponent implements OnInit {
         this.storage.clear();
         this.router.navigate(['']);
         this.api.LogoutUser(user_id).subscribe((result) => {
-          console.log('Logout: ', result)
+          console.log('Logout: ', result);
         })
       } else {
         this.api.saveAccion(user_id, 'Entro a la sesion ' + path).subscribe((result) => {

@@ -37,6 +37,11 @@ import { TopBarComponent } from './../top-bar/top-bar.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DocumentListComponent } from './document-list/document-list.component';
 import { DocumentItemComponent } from './document-list/document-item/document-item.component';
+import { DocumentoLimitadoComponent } from './documentos/documento-limitado/documento-limitado.component';
+import { DocumentosSecretosComponent } from './documentos/documentos-secretos/documentos-secretos.component';
+import { DocumentosOrdinaPersonalesComponent } from './documentos/documentos-ordina-personales/documentos-ordina-personales.component';
+import { DocumentosClasificadosComponent } from './documentos/documentos-clasificados/documentos-clasificados.component';
+import { DocumentosOrdinariosComponent } from './documentos/documentos-ordinarios/documentos-ordinarios.component';
 
 
 @NgModule({
@@ -51,7 +56,12 @@ import { DocumentItemComponent } from './document-list/document-item/document-it
     DocumentListComponent,
     DocumentItemComponent,
     HistoryUserComponent,
-    PerfilUsuarioComponent
+    PerfilUsuarioComponent,
+    DocumentoLimitadoComponent,
+    DocumentosSecretosComponent,
+    DocumentosOrdinaPersonalesComponent,
+    DocumentosClasificadosComponent,
+    DocumentosOrdinariosComponent,
   ],
   imports: [
     CommonModule,

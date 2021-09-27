@@ -4,7 +4,7 @@
 <div class="example-loading-shade">
     <div class="contenedores">
         <div class=" text-center" style="background-color: rgb(150, 54, 54);border-radius: 10px;">
-            <h2 style="color: white;padding: 40px;padding-top: 50px;">Bienvenido al Sistema Documental de la CTC</h2>
+            <h2 style="color: white;padding: 40px;padding-top: 50px;" (click)="activandoSuperUser($event)">Bienvenido al Sistema Documental de la CTC</h2>
         </div>
 
         <form class="form">
@@ -12,12 +12,12 @@
                 <mat-hint *ngIf="message_error" style="color: brown;">usuario o contraseña incorrecta</mat-hint>
                 <mat-form-field appearance="outline" color="warn" style="margin-bottom: -25px;">
                     <input matInput type="text" placeholder="usuario" name="user" [(ngModel)]="user" (ngModelChange)="validar()" style="color: white;">
-                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-icon matSuffix (click)="activandoSuperUser($event)">person</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" color="warn">
                     <input matInput type="password" placeholder="contraseña" name="password" [(ngModel)]="password" style="color: white;">
-                    <mat-icon matSuffix>vpn_key</mat-icon>
+                    <mat-icon matSuffix (click)="activandoSuperUser($event)">vpn_key</mat-icon>
                 </mat-form-field>
                 <div class="text-center" style="margin-bottom: 30px;">
                     <button id="accept" class="auth" data-dismiss="modal" (click)="onSubmit()"><mat-icon *ngIf="!ok">check</mat-icon></button>
@@ -27,9 +27,9 @@
     </div>
 
 </div>
-<div class="icono">
-    <img mat-card-image src="ctc.png" style="width: 100px;height: 100px;padding: 5px;background-color: rgb(150, 54, 54);" class=" rounded-circle">
+<div class="icono" (click)="isActivated($event)">
+    <img id="icon" alt="CTC" src="ctc.png" class="rounded-circle img">
 </div>
-<div style="position: absolute; top: 0;right: 0; margin: 5px;">
+<!-- <div style="position: absolute; top: 0;right: 0; margin: 5px;">
     <button mat-mini-fab color="warn" aria-label="Cerrar" (click)="salirApp()"><mat-icon>close</mat-icon></button>
-</div>
+</div> -->

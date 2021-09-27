@@ -1,35 +1,35 @@
-<mat-sidenav-container class="sidenav-content">
-  <mat-sidenav #drawer class="sidenav  bg-darkest" fixedInViewport
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" mode="side" [opened]="(isHandset$ | async) === false">
-    <mat-toolbar class="deep-orange">
-      <!-- <mat-icon class="example-header-image" matTooltip="{{nombre}}">account_circle</mat-icon> -->
-      <div class="example-loading-shade rounded-circle" [hidden]="loadingAvatar">
-        <mat-spinner color="warn" [hidden]="loadingAvatar" [diameter]="50" class="rounded-circle loading"></mat-spinner>
-      </div>
-      <img [hidden]="!loadingAvatar" src="{{src_avatar}}" class="rounded-circle"
-        style="width: 50px;height: 50px; margin-right: 10px;padding: 0.1px;background-color: white;"
-        matTooltip="{{nombre}}">
-      <div style="display: block;">
-        <section style="font-size: 15px;">{{user}}</section>
-        <section style="font-size: 10px;">{{rol}}</section>
-      </div>
-    </mat-toolbar>
-    <mat-nav-list>
-      <app-menu></app-menu>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar class="deep-orange">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+<mat-sidenav-container class="sidenav-content bg-darkest" style="">
+    <mat-sidenav #drawer class="sidenav  bg-darkest" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" mode="side" [opened]="(isHandset$ | async) === false" style="margin-top: 32px">
+        <mat-toolbar class="deep-orange">
+            <!-- <mat-icon class="example-header-image" matTooltip="{{nombre}}">account_circle</mat-icon> -->
+            <div class="example-loading-shade rounded-circle" [hidden]="loadingAvatar">
+                <mat-spinner color="warn" [hidden]="loadingAvatar" [diameter]="50" class="rounded-circle loading"></mat-spinner>
+            </div>
+            <img [hidden]="!loadingAvatar" src="{{src_avatar}}" class="rounded-circle" style="width: 50px;height: 50px; margin-right: 10px;padding: 0.1px;background-color: white;" matTooltip="{{nombre}}">
+            <div style="display: block;">
+                <section style="font-size: 15px;">{{user}}</section>
+                <section style="font-size: 10px;">{{rol}}</section>
+            </div>
+        </mat-toolbar>
+        <mat-nav-list>
+            <app-menu></app-menu>
+            <div style="position: absolute;right: 0;left: 0;bottom: 0;margin: 5px;font-size: smaller;"><strong>Copyright Kuroko 2022</strong>
+                <p> version 2.1.00</p>
+            </div>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar class="deep-orange">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Sistema</span>
-      <!-- <div class="login-icon-toolbar">
+            <span>Sistema</span>
+            <!-- <div class="login-icon-toolbar">
               <mat-icon>account_circle</mat-icon>
             </div> -->
-    </mat-toolbar>
-    <!-- Add Content Here -->
-    <router-outlet></router-outlet>
+        </mat-toolbar>
+        <!-- Add Content Here -->
+        <router-outlet></router-outlet>
 
-  </mat-sidenav-content>
+    </mat-sidenav-content>
 </mat-sidenav-container>
