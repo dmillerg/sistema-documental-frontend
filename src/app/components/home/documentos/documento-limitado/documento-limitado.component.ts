@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocumentoLimitadoComponent implements OnInit {
 
-  title: string = 'Documentos Secretos';
+  title: string = 'Documentos Limitados';
   subtitle: string = 'Vista privada no para todos los usuarios';
   icon: string = 'assignment';
   documentos: any[] = [];
@@ -32,7 +32,7 @@ export class DocumentoLimitadoComponent implements OnInit {
 
   loadData() {
     this.isLoadingResults = true
-    this.api.getDocuments(1, this.filtro_visivility).subscribe((result) => {
+    this.api.getDocumentsLimit(1).subscribe((result) => {
       if (result.length > 0) {
         this.documentos = result;
         this.documentos_reser = result;
@@ -75,7 +75,7 @@ export class DocumentoLimitadoComponent implements OnInit {
 
   redimensionarListaHeigth(screen) {
     const heigth = screen - 290;
-    console.log(heigth);
+    // console.log(heigth);
     document.getElementById("lista").style.height = heigth + 'px';
   }
 
@@ -92,9 +92,15 @@ export class DocumentoLimitadoComponent implements OnInit {
   }
 
   filtroAll() {
-    // this.documentos = this.documentos_reser.filter(fil => fil.title.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1);
+    this.documentos = this.documentos_reser.filter(fil => fil.title.toLowerCase().indexOf(this.filtro.toLowerCase()) !== -1);
     // console.log(this.filtro);
     // console.log(this.documentos,"*******",this.documentos_reser );
+  }
+
+  registerOrUpdateOrDelete(event){
+    if(event){
+      this.loadData();
+    }
   }
 
 }

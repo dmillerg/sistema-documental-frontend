@@ -1,5 +1,5 @@
 <div class="bg-dark full-container">
-    <app-top-bar [modal_header]="title" [modal_icon]="icon" [modal_subheader]="subtitle" (emisor)="registerOrUpdate($event)">
+    <app-top-bar [modal_header]="title" [modal_icon]="icon" [modal_subheader]="subtitle" (emisor)="registerOrUpdateOrDelete($event)">
     </app-top-bar>
 
     <div class="row bg-darkest filtros mat-elevation-z4" style="padding: 10px;margin-top: 10px;margin-inline: 0px; height: 70px;">
@@ -26,7 +26,8 @@
         </div>
         <mat-grid-list *ngIf="!isLoadingResults" [cols]="breakpoint" rowHeight="1.6:2" (window:resize)="onResize($event)">
             <mat-grid-tile *ngFor="let item of documentos">
-                <app-documento-limitado-item></app-documento-limitado-item>
+                <app-documento-limitado-item [id]="item.id" [no]="item.no" [titulo]="item.titulo" [fecha]="item.fecha" [procedencia]="item.procedencia" [movimiento1]="item.movimiento1" [movimiento2]="item.movimiento2" [destruccion]="item.destruccion" [expediente]="item.expediente"
+                    [observacion]="item.observacion" (emisor)="registerOrUpdateOrDelete($event)"></app-documento-limitado-item>
             </mat-grid-tile>
         </mat-grid-list>
     </div>

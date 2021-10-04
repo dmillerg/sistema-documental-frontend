@@ -1,5 +1,6 @@
 .menu-item {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    width: 100%;
 }
 
 mat-subheader {

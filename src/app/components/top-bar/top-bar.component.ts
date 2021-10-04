@@ -1,3 +1,4 @@
+import { ModalDocumentLimitadoComponent } from './../modals/modal-document-limitado/modal-document-limitado.component';
 import { ModalDocumentComponent } from './../modals/modal-document/modal-document.component';
 import { ModalPermisosComponent } from './../modals/modal-permisos/modal-permisos.component';
 import { ModalRolComponent } from './../modals/modal-rol/modal-rol.component';
@@ -74,6 +75,16 @@ export class TopBarComponent implements OnInit {
           }
         });
         break;
+      case 'Documentos Limitados':
+        var modal = this.modalService.open(ModalDocumentLimitadoComponent, { backdrop: false});
+        modal.componentInstance.modalHeader = "Documentos limitados";
+        modal.componentInstance.modalmessage = "Se debe rellenar todos los campos marcados con un asterisco";
+        modal.componentInstance.modal_action = "Agregar";
+        modal.result.then((result) => {
+          if (result) {
+            this.registerOrUpdate();
+          }
+        });
       default:
         console.log("default");
     }

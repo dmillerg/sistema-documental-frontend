@@ -358,4 +358,57 @@ export class ApiService {
     formData.append("confirm", confirm);
     return this.http.post(direccion, formData);
   }
+
+  /**
+   * obtiene todos los documentos limitados permitidos para el usuario
+   * @param id
+   * @returns
+   */
+   getDocumentsLimit(id: number): Observable<Documents[]> {
+    let direccion = this.url + 'limitado/' + id;
+    const headers = { 'content-type': 'application/json' };
+
+    return this.http.get<Documents[]>(direccion, { 'headers': headers});
+  }
+
+  /**
+   * Agrega un nuevo documento limitado
+   * @param formData
+   * @returns
+   */
+  AddDocumentlimit(formData) {
+    let direccion = this.url + 'limitado';
+    return this.http.post(direccion, formData);
+  }
+
+  /**
+   * Obtiene la imagen de los documentos limitados por el id
+   * @param id
+   * @returns
+   */
+  getDocumentsLimitFoto(id) {
+    let direccion = this.url + 'limitadoFoto/' + id;
+    return this.http.get(direccion);
+  }
+
+  /**
+   * Borra un documento limitado apartir de un id
+   * @param id
+   * @returns
+   */
+  deleteDocumentLimit(id: number = -1) {
+    let direccion = this.url + 'limitado/' + id;
+    return this.http.delete(direccion);
+  }
+
+  /**
+   * Actualiza los datos de un documento limitado apartir de un id
+   * @param id
+   * @param formData
+   * @returns
+   */
+  updateDocumentLimit(id: number = -1, formData) {
+    let direccion = this.url + 'limitado/' + id;
+    return this.http.post(direccion, formData);
+  }
 }

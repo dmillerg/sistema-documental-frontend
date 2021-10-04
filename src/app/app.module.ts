@@ -1,3 +1,4 @@
+import { ModalDocumentLimitadoComponent } from './components/modals/modal-document-limitado/modal-document-limitado.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { DocumentoLimitadoItemComponent } from './components/home/documentos/documento-limitado/documento-limitado-item/documento-limitado-item.component';
 import { NgxLoadingModule } from 'ngx-loading';
@@ -6,7 +7,7 @@ import { ModalLoginComponent } from './components/modals/modal-login/modal-login
 import { ModalPermisosComponent } from './components/modals/modal-permisos/modal-permisos.component';
 import { ModalRolComponent } from './components/modals/modal-rol/modal-rol.component';
 import { NgModule } from '@angular/core';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -47,6 +48,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SuperuserComponent } from './components/superuser/superuser.component';
 import { WaveComponent } from './components/wave/wave.component';
 
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { MatNativeDateModule } from '@angular/material/core';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +65,7 @@ import { WaveComponent } from './components/wave/wave.component';
     ModalLoginComponent,
     ModalDocumentComponent,
     ModalUserHistoryComponent,
+    ModalDocumentLimitadoComponent,
     SuperuserComponent,
     WaveComponent,
   ],
@@ -96,8 +104,10 @@ import { WaveComponent } from './components/wave/wave.component';
     ToastModule.forRoot(),
     NgxLoadingModule.forRoot({}),
     MatMenuModule,
+    MatNativeDateModule,
   ],
   providers: [
+    DatePipe,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
 

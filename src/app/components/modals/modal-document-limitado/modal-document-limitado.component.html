@@ -1,0 +1,93 @@
+<div class="modal-content bg-darkest" style="border: 0px;">
+    <div class="modal-header bg-warn">
+        <h2 class="modal-title">{{modal_action}} {{modalHeader}}</h2>
+        <button type="button" style="color: white;" class="close" data-dismiss="modal" aria-label="Close" (click)="actiModal.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body" style="padding-top: 5px;">
+        <form [formGroup]="form_document">
+            <div class="contenedor">
+                <img [src]="src_document" style="width: 100%;height: 150px;" class="img-thumbnail rounded " (click)="changeImage()">
+                <div class="file-select" id="src-file1" style="cursor: pointer;" [hidden]="true">
+                    <input id="imagefile" type="file" name="src-file1" aria-label="Imagen" style="cursor: pointer;" (change)="fileEvent($event)" accept="image/*">
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" color="warn" style="margin-top: 15px;">
+                        <mat-label>No.</mat-label>
+                        <input matInput #no maxlength="20" placeholder="No." formControlName="no" (ngModelChange)="validarCambio()" name="no" required>
+                        <mat-icon matSuffix>title</mat-icon>
+                        <mat-hint style="color: white;" align="end">{{no.value.length}} / 20</mat-hint>
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" color="warn">
+                        <mat-label>Fecha</mat-label>
+                        <input matInput [matDatepicker]="datepicker" formControlName="fecha" name="fecha">
+                        <mat-datepicker-toggle style="color: white;" matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #datepicker>
+                            <mat-datepicker-actions>
+                                <button mat-button matDatepickerCancel>Cancelar</button>
+                                <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
+                            </mat-datepicker-actions>
+                        </mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <mat-form-field appearance="outline" color="warn" style="margin-top: 15px;">
+                    <mat-label>Titulo</mat-label>
+                    <input matInput #titulo maxlength="20" placeholder="Titulo" formControlName="titulo" (ngModelChange)="validarCambio()" name="titulo" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{titulo.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" color="warn" style="margin-top: 15px;">
+                    <mat-label>Procedencia</mat-label>
+                    <input matInput #procedencia maxlength="20" placeholder="Procedencia" formControlName="procedencia" (ngModelChange)="validarCambio()" name="procedencia" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{procedencia.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn" style="margin-top: 15px;">
+                    <mat-label>Movimiento1</mat-label>
+                    <input matInput #movimiento1 maxlength="20" placeholder="movimiento1" formControlName="movimiento1" (ngModelChange)="validarCambio()" name="movimiento1" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{movimiento1.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn" style="margin-top: 15px;">
+                    <mat-label>Movimiento2</mat-label>
+                    <input matInput #movimiento2 maxlength="20" placeholder="Movimiento2" formControlName="movimiento2" (ngModelChange)="validarCambio()" name="movimiento2" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{movimiento2.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn" style="margin-top: 15px;">
+                    <mat-label>Destruccion</mat-label>
+                    <input matInput #destruccion maxlength="20" placeholder="Destruccion" formControlName="destruccion" (ngModelChange)="validarCambio()" name="destruccion" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{destruccion.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn" style="margin-top: 15px;">
+                    <mat-label>Expediente</mat-label>
+                    <input matInput #expediente maxlength="20" placeholder="Expediente" formControlName="expediente" (ngModelChange)="validarCambio()" name="expediente" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{expediente.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn" style="margin-top: 15px;">
+                    <mat-label>Observación</mat-label>
+                    <input matInput #observacion maxlength="20" placeholder="Observación" formControlName="observacion" (ngModelChange)="validarCambio()" name="observacion" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{observacion.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button [disabled]="disable_register" mat-raised-button color="warn" flex data-dismiss="modal" (click)="ActionDocument()">{{modal_action}} documento</button>
+    </div>
+
+</div>
