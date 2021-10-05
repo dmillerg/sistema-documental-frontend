@@ -48,7 +48,7 @@ export class MenuComponent implements OnInit {
           permit: user.is_read == 1,
           children: [
             { name: 'limitados', icon: 'article', path: 'documentos-limitados', permit: user.is_read == 1, },
-            { name: 'secretos', icon: 'article', path: 'documentos', permit: user.is_read == 1, },
+            { name: 'secretos', icon: 'article', path: 'documentos-secretos', permit: user.is_read == 1, },
             { name: 'ordinarios personales', icon: 'article', path: 'documentos', permit: user.is_read == 1, },
             { name: 'clasificados', icon: 'article', path: 'documentos', permit: user.is_read == 1, },
             { name: 'ordinarios', icon: 'article', path: 'documentos', permit: user.is_read == 1, },

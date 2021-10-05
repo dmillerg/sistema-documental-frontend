@@ -52,6 +52,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ModalDocumentSecretoComponent } from './components/modals/modal-document-secreto/modal-document-secreto.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ModalDocumentComponent,
     ModalUserHistoryComponent,
     ModalDocumentLimitadoComponent,
+    ModalDocumentSecretoComponent,
     SuperuserComponent,
     WaveComponent,
   ],

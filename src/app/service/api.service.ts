@@ -411,4 +411,57 @@ export class ApiService {
     let direccion = this.url + 'limitado/' + id;
     return this.http.post(direccion, formData);
   }
+
+   /**
+   * obtiene todos los documentos secretos permitidos para el usuario
+   * @param id
+   * @returns
+   */
+    getDocumentsSecret(id: number): Observable<Documents[]> {
+      let direccion = this.url + 'secreto/' + id;
+      const headers = { 'content-type': 'application/json' };
+
+      return this.http.get<Documents[]>(direccion, { 'headers': headers});
+    }
+
+    /**
+     * Agrega un nuevo documento secretos
+     * @param formData
+     * @returns
+     */
+    AddDocumentSecret(formData) {
+      let direccion = this.url + 'secreto';
+      return this.http.post(direccion, formData);
+    }
+
+    /**
+     * Obtiene la imagen de los documentos secretos por el id
+     * @param id
+     * @returns
+     */
+    getDocumentsSecretFoto(id) {
+      let direccion = this.url + 'secretoFoto/' + id;
+      return this.http.get(direccion);
+    }
+
+    /**
+     * Borra un documento secreto apartir de un id
+     * @param id
+     * @returns
+     */
+    deleteDocumentSecret(id: number = -1) {
+      let direccion = this.url + 'secreto/' + id;
+      return this.http.delete(direccion);
+    }
+
+    /**
+     * Actualiza los datos de un documento secreto apartir de un id
+     * @param id
+     * @param formData
+     * @returns
+     */
+    updateDocumentSecret(id: number = -1, formData) {
+      let direccion = this.url + 'secreto/' + id;
+      return this.http.post(direccion, formData);
+    }
 }

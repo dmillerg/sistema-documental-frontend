@@ -43,6 +43,7 @@ import { DocumentosOrdinaPersonalesComponent } from './documentos/documentos-ord
 import { DocumentosClasificadosComponent } from './documentos/documentos-clasificados/documentos-clasificados.component';
 import { DocumentosOrdinariosComponent } from './documentos/documentos-ordinarios/documentos-ordinarios.component';
 import { DocumentoLimitadoItemComponent } from './documentos/documento-limitado/documento-limitado-item/documento-limitado-item.component';
+import { DocumentosSecretosItemComponent } from './documentos/documentos-secretos/documentos-secretos-item/documentos-secretos-item.component';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { DocumentoLimitadoItemComponent } from './documentos/documento-limitado/
     DocumentosClasificadosComponent,
     DocumentosOrdinariosComponent,
     DocumentoLimitadoItemComponent,
+    DocumentosSecretosItemComponent,
   ],
   imports: [
     CommonModule,
