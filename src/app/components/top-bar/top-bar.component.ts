@@ -1,3 +1,4 @@
+import { ModalDocumentClasificadoComponent } from './../modals/modal-document-clasificado/modal-document-clasificado.component';
 import { ModalDocumentLimitadoComponent } from './../modals/modal-document-limitado/modal-document-limitado.component';
 import { ModalDocumentComponent } from './../modals/modal-document/modal-document.component';
 import { ModalPermisosComponent } from './../modals/modal-permisos/modal-permisos.component';
@@ -77,7 +78,7 @@ export class TopBarComponent implements OnInit {
         });
         break;
       case 'Documentos Limitados':
-        var modal = this.modalService.open(ModalDocumentLimitadoComponent, { backdrop: false});
+        var modal = this.modalService.open(ModalDocumentLimitadoComponent, { backdrop: false });
         modal.componentInstance.modalHeader = "Documentos limitados";
         modal.componentInstance.modalmessage = "Se debe rellenar todos los campos marcados con un asterisco";
         modal.componentInstance.modal_action = "Agregar";
@@ -86,6 +87,18 @@ export class TopBarComponent implements OnInit {
             this.registerOrUpdate();
           }
         });
+        break;
+      case 'Documentos Clasificados':
+        var modal = this.modalService.open(ModalDocumentClasificadoComponent, { backdrop: false });
+        modal.componentInstance.modalHeader = "Documentos clasificados";
+        modal.componentInstance.modalmessage = "Se debe rellenar todos los campos marcados con un asterisco";
+        modal.componentInstance.modal_action = "Agregar";
+        modal.result.then((result) => {
+          if (result) {
+            this.registerOrUpdate();
+          }
+        });
+        break;
       default:
         console.log("default");
     }

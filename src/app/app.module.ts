@@ -1,3 +1,4 @@
+import { ModalDocumentClasificadoComponent } from './components/modals/modal-document-clasificado/modal-document-clasificado.component';
 import { ModalDocumentLimitadoComponent } from './components/modals/modal-document-limitado/modal-document-limitado.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { DocumentoLimitadoItemComponent } from './components/home/documentos/documento-limitado/documento-limitado-item/documento-limitado-item.component';
@@ -68,6 +69,7 @@ import { ModalDocumentSecretoComponent } from './components/modals/modal-documen
     ModalUserHistoryComponent,
     ModalDocumentLimitadoComponent,
     ModalDocumentSecretoComponent,
+    ModalDocumentClasificadoComponent,
     SuperuserComponent,
     WaveComponent,
   ],

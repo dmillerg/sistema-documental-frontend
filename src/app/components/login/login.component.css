@@ -89,7 +89,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(60deg, rgba(0, 0, 0, 0.87) 0%, #d4352f 100%), url('/assets/ctc-background.jpg');
     background-blend-mode: multiply;
 }
 

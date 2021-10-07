@@ -464,4 +464,57 @@ export class ApiService {
       let direccion = this.url + 'secreto/' + id;
       return this.http.post(direccion, formData);
     }
+
+    /**
+   * obtiene todos los documentos clasificado permitidos para el usuario
+   * @param id
+   * @returns
+   */
+     getDocumentsClasificado(id: number): Observable<Documents[]> {
+      let direccion = this.url + 'clasificado/' + id;
+      const headers = { 'content-type': 'application/json' };
+
+      return this.http.get<Documents[]>(direccion, { 'headers': headers});
+    }
+
+    /**
+     * Agrega un nuevo documento clasificado
+     * @param formData
+     * @returns
+     */
+    AddDocumentClasificado(formData) {
+      let direccion = this.url + 'clasificado';
+      return this.http.post(direccion, formData);
+    }
+
+    /**
+     * Obtiene la imagen de los documentos clasificado por el id
+     * @param id
+     * @returns
+     */
+    getDocumentsClasificadoFoto(id) {
+      let direccion = this.url + 'clasificadoFoto/' + id;
+      return this.http.get(direccion);
+    }
+
+    /**
+     * Borra un documento clasificado apartir de un id
+     * @param id
+     * @returns
+     */
+    deleteDocumentClasificado(id: number = -1) {
+      let direccion = this.url + 'clasificado/' + id;
+      return this.http.delete(direccion);
+    }
+
+    /**
+     * Actualiza los datos de un documento clasificado apartir de un id
+     * @param id
+     * @param formData
+     * @returns
+     */
+    updateDocumentClasificado(id: number = -1, formData) {
+      let direccion = this.url + 'clasificado/' + id;
+      return this.http.post(direccion, formData);
+    }
 }

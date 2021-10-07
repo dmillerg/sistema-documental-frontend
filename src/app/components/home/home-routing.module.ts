@@ -1,3 +1,4 @@
+import { DocumentosClasificadosComponent } from './documentos/documentos-clasificados/documentos-clasificados.component';
 import { DocumentosSecretosComponent } from './documentos/documentos-secretos/documentos-secretos.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { HistoryUserComponent } from './history-user/history-user.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: 'documentos', component:DocumentListComponent },
       { path: 'documentos-limitados', component:DocumentoLimitadoComponent },
       { path: 'documentos-secretos', component:DocumentosSecretosComponent },
+      { path: 'documentos-clasificados', component:DocumentosClasificadosComponent },
       { path: 'perfil', component:PerfilUsuarioComponent },
       { path: 'historial', component:HistoryUserComponent },
     ]

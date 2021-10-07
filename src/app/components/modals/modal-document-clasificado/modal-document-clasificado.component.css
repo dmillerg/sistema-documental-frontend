@@ -1,0 +1,72 @@
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    max-width: 600px;
+}
+
+.bg-darkest {
+    background-color: rgba(37, 37, 37);
+    color: whitesmoke;
+}
+
+.bg-warn {
+    background-color: #f44336;
+    color: white;
+}
+
+.contenedor-image {
+    display: block;
+    flex-direction: row;
+    margin: 0px;
+    max-height: 400px;
+
+}
+
+.file-select {
+    position: relative;
+    display: inline-block;
+}
+
+.file-select::before {
+    background-color: #f44336;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    content: 'Seleccionar';
+    /* testo por defecto */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.file-select input[type="file"] {
+    opacity: 0;
+    width: 200px;
+    height: 32px;
+    display: inline-block;
+}
+
+#src-file1::before {
+    content: 'Seleccionar Imagen';
+}
+
+.image {
+    float: none;
+    position: relative;
+}
+
+.icon-visibility{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.icon {
+  font-size: 40px;
+  cursor: pointer;
+}

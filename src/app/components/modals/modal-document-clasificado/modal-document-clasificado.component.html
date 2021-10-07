@@ -1,0 +1,129 @@
+<div class="modal-content bg-darkest" style="border: 0px;">
+    <div class="modal-header bg-warn">
+        <h2 class="modal-title">{{modal_action}} {{modalHeader}}</h2>
+        <button type="button" style="color: white;" class="close" data-dismiss="modal" aria-label="Close" (click)="actiModal.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body" style="padding-top: 5px;">
+        <form [formGroup]="form_document">
+            <div class="contenedor">
+                <img [src]="src_document" style="width: 100%;height: 150px;" class="img-thumbnail rounded " (click)="changeImage()">
+                <div class="file-select" id="src-file1" style="cursor: pointer;" [hidden]="true">
+                    <input id="imagefile" type="file" name="src-file1" aria-label="Imagen" style="cursor: pointer;" (change)="fileEvent($event)" accept="image/*">
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" color="warn">
+                        <mat-label>No.</mat-label>
+                        <input matInput #no maxlength="20" placeholder="No." formControlName="no" (ngModelChange)="validarCambio()" name="no" required>
+                        <mat-icon matSuffix>title</mat-icon>
+                        <mat-hint style="color: white;" align="end">{{no.value.length}} / 20</mat-hint>
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" color="warn">
+                        <mat-label>Fecha</mat-label>
+                        <input matInput [matDatepicker]="datepicker" formControlName="fecha" name="fecha">
+                        <mat-datepicker-toggle style="color: white;" matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #datepicker>
+                            <mat-datepicker-actions>
+                                <button mat-button matDatepickerCancel>Cancelar</button>
+                                <button mat-raised-button color="warn" matDatepickerApply>Aplicar</button>
+                            </mat-datepicker-actions>
+                        </mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <mat-form-field appearance="outline" color="warn">
+                    <mat-label>Enviado</mat-label>
+                    <input matInput #enviado maxlength="20" placeholder="Enviado" formControlName="enviado" (ngModelChange)="validarCambio()" name="enviado" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{enviado.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" color="warn">
+                    <mat-label>RSB</mat-label>
+                    <input matInput #rsb maxlength="20" placeholder="RSB" formControlName="rsb" (ngModelChange)="validarCambio()" name="rsb" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{rsb.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn">
+                    <mat-label>RS</mat-label>
+                    <input matInput #rs maxlength="20" placeholder="RS" formControlName="rs" (ngModelChange)="validarCambio()" name="rs" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{rs.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn">
+                    <mat-label>Fecha Registro CTC</mat-label>
+                    <input matInput [matDatepicker]="datepicker2" formControlName="fecha_registro_ctc" name="fecha_registro_ctc">
+                    <mat-datepicker-toggle style="color: white;" matSuffix [for]="datepicker2"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker2>
+                        <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>Cancelar</button>
+                            <button mat-raised-button color="warn" matDatepickerApply>Aplicar</button>
+                        </mat-datepicker-actions>
+                    </mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn">
+                    <mat-label>Asunto</mat-label>
+                    <input matInput #asunto maxlength="20" placeholder="Asunto" formControlName="asunto" (ngModelChange)="validarCambio()" name="asunto" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{asunto.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn">
+                    <mat-label>DOC</mat-label>
+                    <input matInput #doc maxlength="20" placeholder="DOC" formControlName="doc" (ngModelChange)="validarCambio()" name="doc" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{doc.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn">
+                    <mat-label>EJ</mat-label>
+                    <input matInput #ej maxlength="20" placeholder="EJ" formControlName="ej" (ngModelChange)="validarCambio()" name="ej" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{ej.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn">
+                    <mat-label>CLASIF</mat-label>
+                    <input matInput #clasif maxlength="20" placeholder="CLASIF" formControlName="clasif" (ngModelChange)="validarCambio()" name="clasif" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{clasif.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn">
+                    <mat-label>Destino</mat-label>
+                    <input matInput #destino maxlength="20" placeholder="Destino" formControlName="destino" (ngModelChange)="validarCambio()" name="destino" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{destino.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn">
+                    <mat-label>Traslado</mat-label>
+                    <input matInput #traslado maxlength="20" placeholder="Traslado" formControlName="traslado" (ngModelChange)="validarCambio()" name="traslado" required>
+                    <mat-icon matSuffix>title</mat-icon>
+                    <mat-hint style="color: white;" align="end">{{traslado.value.length}} / 20</mat-hint>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline" color="warn">
+                    <mat-label>Fecha Traslado</mat-label>
+                    <input matInput [matDatepicker]="datepicker3" formControlName="fecha_traslado" name="fecha_traslado">
+                    <mat-datepicker-toggle style="color: white;" matSuffix [for]="datepicker3"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker3>
+                        <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>Cancelar</button>
+                            <button mat-raised-button color="warn" matDatepickerApply>Aplicar</button>
+                        </mat-datepicker-actions>
+                    </mat-datepicker>
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button [disabled]="disable_register" mat-raised-button color="warn" flex data-dismiss="modal" (click)="ActionDocument()">{{modal_action}} documento</button>
+    </div>
+
+</div>

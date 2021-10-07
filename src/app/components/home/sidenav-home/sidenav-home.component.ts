@@ -38,8 +38,11 @@ export class SidenavHomeComponent implements OnInit, AfterViewInit {
 
       this.api.getAvatarUser(this.id_usuario).subscribe((result) => {
         this.src_avatar = result;
+        console.log(this.src_avatar, 'src_avatar');
+
       }, (error) => {
         this.src_avatar = error.url;
+        console.log(this.src_avatar, 'src_avatar');
       });
     } catch (e) {
       this.router.navigate(['/login']);
