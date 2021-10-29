@@ -1,5 +1,23 @@
-<div class="contenedor">
+<div class="contenedor" style="background-image: url('assets/background-login.svg');">
     <div class="login-container bg-darkest">
-        <div style="height: 100%;width: 30%; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M-171.84,-50.83 C498.59,-50.83 349.20,-50.00 503.10,-26.17 L570.82,51.80 L515.52,154.43 Z" style="stroke: none; fill: #08f;"></path></svg></div>
+        <div class="login">
+            <h1 class="h1"><strong>Bienvenido</strong></h1>
+            <p>Sistema documental de la CTC</p>
+            <mat-form-field appearance="legacy" color="warn">
+                <mat-label style="color: rgb(95, 95, 95);">Usuario</mat-label>
+                <input matInput placeholder="Usuario">
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-hint style="color: rgb(95, 95, 95);">Ingrese su usuario</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="legacy" color="warn">
+                <mat-label style="color: rgb(95, 95, 95);" >Contraseña</mat-label>
+                <input matInput placeholder="Contraseña">
+                <mat-icon matSuffix>vpn_key</mat-icon>
+                <mat-hint style="color: rgb(95, 95, 95);">Ingrese su contraseña</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="login-image" style=" background-image: url('assets/prisma.svg');">
+        <img src="ctc.png" style="width: 45%;margin-top: 10%;margin-left: 30%;">
+        </div>
     </div>
 </div>

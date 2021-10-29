@@ -14,7 +14,7 @@
 }
 
 
-/* .accept::before {
+ .accept::before {
     content: "";
 }
 
@@ -44,6 +44,7 @@
     background-color: #d4352f;
     box-shadow: 1px 1px 1px rgb(12, 12, 12);
 }
+/*
 
 .contenedor {
     display: flex;
@@ -124,27 +125,50 @@ input::placeholder {
 .login-container {
     width: 60%;
     height: 60%;
+    max-width: 620px;
+    max-height: 400px;
     box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    position: relative;
+    display: inline;
 }
 
 .container-icon {
     width: 0;
     height: 0;
-    background-color: rebeccapurple;
     border-top: 100px solid #000;
 }
 
-.div {
-    width: 20%;
-    height: 100%;
-    float:left;
-    margin:0.5%;
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+    margin-left: 10%;
 }
 
-/*Up-right pointing*/
-.triangulo_top_right {
-    width: 0;
-    height: 0;
-    border-top: 60vh solid #000; 
-    border-left: 40vh solid transparent;      
+.login-title{
+    font-weight: bolder;
+    font-size: 60sp;
+    color: white;
+}
+
+
+.login-image{
+    width: 40%;
+    height: 100%;
+    border-bottom-left-radius: 100%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-right: 0px;
+    position: absolute;
+    display: inline;
+    right: 0;
+}
+
+.mat-form-field-flex{
+    color: white;
 }
