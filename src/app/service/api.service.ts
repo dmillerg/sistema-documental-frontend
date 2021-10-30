@@ -15,7 +15,7 @@ import { UserHistory } from '../models/userhistory';
 })
 export class ApiService {
 
-  url: string = "http://172.40.7.170:3000/apis/";
+  url: string = "http://localhost:3000/apis/";
 
   constructor(private http: HttpClient) { }
 
