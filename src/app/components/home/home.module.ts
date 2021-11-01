@@ -37,6 +37,14 @@ import { TopBarComponent } from './../top-bar/top-bar.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DocumentListComponent } from './document-list/document-list.component';
 import { DocumentItemComponent } from './document-list/document-item/document-item.component';
+import { DocumentoLimitadoComponent } from './documentos/documento-limitado/documento-limitado.component';
+import { DocumentosSecretosComponent } from './documentos/documentos-secretos/documentos-secretos.component';
+import { DocumentosOrdinaPersonalesComponent } from './documentos/documentos-ordina-personales/documentos-ordina-personales.component';
+import { DocumentosClasificadosComponent } from './documentos/documentos-clasificados/documentos-clasificados.component';
+import { DocumentosOrdinariosComponent } from './documentos/documentos-ordinarios/documentos-ordinarios.component';
+import { DocumentoLimitadoItemComponent } from './documentos/documento-limitado/documento-limitado-item/documento-limitado-item.component';
+import { DocumentosSecretosItemComponent } from './documentos/documentos-secretos/documentos-secretos-item/documentos-secretos-item.component';
+import { DocumentosClasificadosItemComponent } from './documentos/documentos-clasificados/documentos-clasificados-item/documentos-clasificados-item.component';
 
 
 @NgModule({
@@ -51,7 +59,15 @@ import { DocumentItemComponent } from './document-list/document-item/document-it
     DocumentListComponent,
     DocumentItemComponent,
     HistoryUserComponent,
-    PerfilUsuarioComponent
+    PerfilUsuarioComponent,
+    DocumentoLimitadoComponent,
+    DocumentosSecretosComponent,
+    DocumentosOrdinaPersonalesComponent,
+    DocumentosClasificadosComponent,
+    DocumentosOrdinariosComponent,
+    DocumentoLimitadoItemComponent,
+    DocumentosSecretosItemComponent,
+    DocumentosClasificadosItemComponent,
   ],
   imports: [
     CommonModule,

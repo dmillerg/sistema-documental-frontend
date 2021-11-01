@@ -193,13 +193,13 @@ export class ApiService {
    * @returns
    */
   LoginUser(user: string, pass: string): Observable<Login> {
-    let direccion = this.url + '/login';
+    let direccion = this.url + 'login';
     let body = { "user": user, "pass": pass };
     return this.http.post<Login>(direccion, body);
   }
 
   LogoutUser(user_id: number = -1) {
-    let direccion = this.url + '/logout/' + user_id;
+    let direccion = this.url + 'logout/' + user_id;
     return this.http.delete(direccion);
   }
 
@@ -307,6 +307,12 @@ export class ApiService {
     return this.http.get<UserHistory[]>(direccion);
   }
 
+  /**
+   * Salvar cada accion del usuario actual
+   * @param user_id
+   * @param accion
+   * @returns
+   */
   saveAccion(user_id: number = -1, accion: string) {
     let direccion = this.url + 'userhistory/';
     let formData = new FormData();
@@ -315,6 +321,11 @@ export class ApiService {
     return this.http.post(direccion, formData);
   }
 
+  /**
+   * Obtener Rol by el rol_name
+   * @param rol_name
+   * @returns
+   */
   getRolByRolName(rol_name: string): Observable<Roles[]>{
     let direccion = this.url + 'rolbyrolname/';
     const headers = { 'content-type': 'application/json' };
@@ -323,4 +334,187 @@ export class ApiService {
     }
     return this.http.get<Roles[]>(direccion, { 'headers': headers, params: body });
   }
+
+  /**
+   * Obtener todas las apis
+   * @returns
+   */
+  getApis(){
+    let direccion = 'http://172.40.7.170:3000/api';
+    return this.http.get(direccion);
+  }
+
+  /**
+   * Crear superUsuario
+   * @param user
+   * @param pass
+   * @returns
+   */
+  createSuperUser(user, pass, confirm){
+    let direccion = this.url + 'superuser/';
+    let formData = new FormData();
+    formData.append("user", user);
+    formData.append("pass", pass);
+    formData.append("confirm", confirm);
+    return this.http.post(direccion, formData);
+  }
+
+  /**
+   * obtiene todos los documentos limitados permitidos para el usuario
+   * @param id
+   * @returns
+   */
+   getDocumentsLimit(id: number): Observable<Documents[]> {
+    let direccion = this.url + 'limitado/' + id;
+    const headers = { 'content-type': 'application/json' };
+
+    return this.http.get<Documents[]>(direccion, { 'headers': headers});
+  }
+
+  /**
+   * Agrega un nuevo documento limitado
+   * @param formData
+   * @returns
+   */
+  AddDocumentlimit(formData) {
+    let direccion = this.url + 'limitado';
+    return this.http.post(direccion, formData);
+  }
+
+  /**
+   * Obtiene la imagen de los documentos limitados por el id
+   * @param id
+   * @returns
+   */
+  getDocumentsLimitFoto(id) {
+    let direccion = this.url + 'limitadoFoto/' + id;
+    return this.http.get(direccion);
+  }
+
+  /**
+   * Borra un documento limitado apartir de un id
+   * @param id
+   * @returns
+   */
+  deleteDocumentLimit(id: number = -1) {
+    let direccion = this.url + 'limitado/' + id;
+    return this.http.delete(direccion);
+  }
+
+  /**
+   * Actualiza los datos de un documento limitado apartir de un id
+   * @param id
+   * @param formData
+   * @returns
+   */
+  updateDocumentLimit(id: number = -1, formData) {
+    let direccion = this.url + 'limitado/' + id;
+    return this.http.post(direccion, formData);
+  }
+
+   /**
+   * obtiene todos los documentos secretos permitidos para el usuario
+   * @param id
+   * @returns
+   */
+    getDocumentsSecret(id: number): Observable<Documents[]> {
+      let direccion = this.url + 'secreto/' + id;
+      const headers = { 'content-type': 'application/json' };
+
+      return this.http.get<Documents[]>(direccion, { 'headers': headers});
+    }
+
+    /**
+     * Agrega un nuevo documento secretos
+     * @param formData
+     * @returns
+     */
+    AddDocumentSecret(formData) {
+      let direccion = this.url + 'secreto';
+      return this.http.post(direccion, formData);
+    }
+
+    /**
+     * Obtiene la imagen de los documentos secretos por el id
+     * @param id
+     * @returns
+     */
+    getDocumentsSecretFoto(id) {
+      let direccion = this.url + 'secretoFoto/' + id;
+      return this.http.get(direccion);
+    }
+
+    /**
+     * Borra un documento secreto apartir de un id
+     * @param id
+     * @returns
+     */
+    deleteDocumentSecret(id: number = -1) {
+      let direccion = this.url + 'secreto/' + id;
+      return this.http.delete(direccion);
+    }
+
+    /**
+     * Actualiza los datos de un documento secreto apartir de un id
+     * @param id
+     * @param formData
+     * @returns
+     */
+    updateDocumentSecret(id: number = -1, formData) {
+      let direccion = this.url + 'secreto/' + id;
+      return this.http.post(direccion, formData);
+    }
+
+    /**
+   * obtiene todos los documentos clasificado permitidos para el usuario
+   * @param id
+   * @returns
+   */
+     getDocumentsClasificado(id: number): Observable<Documents[]> {
+      let direccion = this.url + 'clasificado/' + id;
+      const headers = { 'content-type': 'application/json' };
+
+      return this.http.get<Documents[]>(direccion, { 'headers': headers});
+    }
+
+    /**
+     * Agrega un nuevo documento clasificado
+     * @param formData
+     * @returns
+     */
+    AddDocumentClasificado(formData) {
+      let direccion = this.url + 'clasificado';
+      return this.http.post(direccion, formData);
+    }
+
+    /**
+     * Obtiene la imagen de los documentos clasificado por el id
+     * @param id
+     * @returns
+     */
+    getDocumentsClasificadoFoto(id) {
+      let direccion = this.url + 'clasificadoFoto/' + id;
+      return this.http.get(direccion);
+    }
+
+    /**
+     * Borra un documento clasificado apartir de un id
+     * @param id
+     * @returns
+     */
+    deleteDocumentClasificado(id: number = -1) {
+      let direccion = this.url + 'clasificado/' + id;
+      return this.http.delete(direccion);
+    }
+
+    /**
+     * Actualiza los datos de un documento clasificado apartir de un id
+     * @param id
+     * @param formData
+     * @returns
+     */
+    updateDocumentClasificado(id: number = -1, formData) {
+      let direccion = this.url + 'clasificado/' + id;
+      return this.http.post(direccion, formData);
+    }
 }

@@ -1,10 +1,14 @@
+import { ModalDocumentClasificadoComponent } from './components/modals/modal-document-clasificado/modal-document-clasificado.component';
+import { ModalDocumentLimitadoComponent } from './components/modals/modal-document-limitado/modal-document-limitado.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { DocumentoLimitadoItemComponent } from './components/home/documentos/documento-limitado/documento-limitado-item/documento-limitado-item.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { ModalUserHistoryComponent } from './components/modals/modal-user-history/modal-user-history.component';
 import { ModalLoginComponent } from './components/modals/modal-login/modal-login.component';
 import { ModalPermisosComponent } from './components/modals/modal-permisos/modal-permisos.component';
 import { ModalRolComponent } from './components/modals/modal-rol/modal-rol.component';
 import { NgModule } from '@angular/core';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -42,6 +46,15 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { ToastrModule } from 'ngx-toastr';
 import { ToastModule } from 'ng-uikit-pro-standard';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SuperuserComponent } from './components/superuser/superuser.component';
+import { WaveComponent } from './components/wave/wave.component';
+
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ModalDocumentSecretoComponent } from './components/modals/modal-document-secreto/modal-document-secreto.component';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +66,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ModalDeleteComponent,
     ModalLoginComponent,
     ModalDocumentComponent,
-    ModalUserHistoryComponent
+    ModalUserHistoryComponent,
+    ModalDocumentLimitadoComponent,
+    ModalDocumentSecretoComponent,
+    ModalDocumentClasificadoComponent,
+    SuperuserComponent,
+    WaveComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,8 +107,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ToastrModule.forRoot(),
     ToastModule.forRoot(),
     NgxLoadingModule.forRoot({}),
+    MatMenuModule,
+    MatNativeDateModule,
   ],
   providers: [
+    DatePipe,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
 

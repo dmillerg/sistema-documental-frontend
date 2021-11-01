@@ -17,3 +17,8 @@ mat-divider {
     margin-right: 5px;
     text-align: right;
 }
+
+.bg-darkest {
+    background-color: rgba(37, 37, 37);
+    color: whitesmoke;
+}

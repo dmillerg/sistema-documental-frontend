@@ -1,0 +1,31 @@
+<div class="contenedor" style="background: url('assets/background-login.svg');">
+    <div class="login-container bg-darkest">
+        <div class="login">
+            <h1 class="h1" style="text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2)"><strong>Bienvenido</strong></h1>
+            <p>Sistema documental de la CTC</p>
+
+            <mat-hint *ngIf="message_error" style="color: brown;">usuario o contraseña incorrecta</mat-hint>
+
+            <mat-form-field appearance="legacy" color="warn">
+                <mat-label style="color: rgb(95, 95, 95);">Usuario</mat-label>
+                <input matInput type="text" placeholder="usuario" name="user" [(ngModel)]="user" (ngModelChange)="validar()" placeholder="Usuario">
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-hint style="color: rgb(95, 95, 95);" (click)="activandoSuperUser($event)">Ingrese su usuario</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="legacy" color="warn">
+                <mat-label style="color: rgb(95, 95, 95);">Contraseña</mat-label>
+                <input matInput type="password" placeholder="contraseña" name="password" [(ngModel)]="password" placeholder="Contraseña">
+                <mat-icon matSuffix>vpn_key</mat-icon>
+                <mat-hint (click)="activandoSuperUser($event)" style="color: rgb(95, 95, 95);">Ingrese su contraseña</mat-hint>
+            </mat-form-field>
+            <div class="text-center" style="margin-top: 30px;">
+                <button id="accept" class="auth" data-dismiss="modal" (click)="onSubmit()">
+                    <mat-icon *ngIf="!ok">check</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="login-image" style=" background-image: url('assets/prisma.svg');">
+            <img src="ctc.png" style="width: 45%;margin-top: 10%;margin-left: 30%;">
+        </div>
+    </div>
+</div>

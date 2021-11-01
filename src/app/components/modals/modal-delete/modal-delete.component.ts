@@ -54,7 +54,32 @@ export class ModalDeleteComponent implements OnInit {
           this.toastrService.success("Documento borrado satisfactoriamente", "Mensaje");
         }, (err) => {
           this.toastrService.error(err.error.message, "Error");
-        })
+        });
+        break;
+      case 'Documento Limitado':
+        this.api.deleteDocumentLimit(this.id).subscribe((result) => {
+          console.log(this.activeModal.close(result));
+          this.toastrService.success("Documento borrado satisfactoriamente", "Mensaje");
+        }, (err) => {
+          this.toastrService.error(err.error.message, "Error");
+        });
+        break;
+      case 'Documento Secreto':
+        this.api.deleteDocumentSecret(this.id).subscribe((result) => {
+          console.log(this.activeModal.close(result));
+          this.toastrService.success("Documento borrado satisfactoriamente", "Mensaje");
+        }, (err) => {
+          this.toastrService.error(err.error.message, "Error");
+        });
+        break;
+      case 'Documento Clasificado':
+        this.api.deleteDocumentClasificado(this.id).subscribe((result) => {
+          console.log(this.activeModal.close(result));
+          this.toastrService.success("Documento borrado satisfactoriamente", "Mensaje");
+        }, (err) => {
+          this.toastrService.error(err.error.message, "Error");
+        });
+        break;
       default:
         console.log("default");
     }
